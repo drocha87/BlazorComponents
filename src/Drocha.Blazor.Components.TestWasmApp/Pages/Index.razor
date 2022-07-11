@@ -1,0 +1,23 @@
+﻿@page "/"
+
+@using Drocha.Blazor.Components.Popover
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+<Popover TargetElement="@_button">
+    <div class="pa-4" style="background-color: red;">
+        I'm a popover uhulll
+    </div>
+</Popover>
+
+<button @ref="_button">Click Me</button>
+
+@code {
+    ElementReference _button;
+}
