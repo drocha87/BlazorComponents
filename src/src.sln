@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drocha.Blazor.Components.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drocha.Blazor.Components.Popover", "Drocha.Blazor.Components.Popover\Drocha.Blazor.Components.Popover.csproj", "{5601784D-EF28-434A-A0B7-B4635CBEE4D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drocha.Blazor.Components.Popover.Tests", "Drocha.Blazor.Components.Popover.Tests\Drocha.Blazor.Components.Popover.Tests.csproj", "{CC5B9482-92D8-4A8A-AD98-A91BC8A29EB1}"
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,5 +60,17 @@ Global
 		{5601784D-EF28-434A-A0B7-B4635CBEE4D8}.Release|x64.Build.0 = Release|Any CPU
 		{5601784D-EF28-434A-A0B7-B4635CBEE4D8}.Release|x86.ActiveCfg = Release|Any CPU
 		{5601784D-EF28-434A-A0B7-B4635CBEE4D8}.Release|x86.Build.0 = Release|Any CPU
+		{CC5B9482-92D8-4A8A-AD98-A91BC8A29EB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC5B9482-92D8-4A8A-AD98-A91BC8A29EB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC5B9482-92D8-4A8A-AD98-A91BC8A29EB1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CC5B9482-92D8-4A8A-AD98-A91BC8A29EB1}.Debug|x64.Build.0 = Debug|Any CPU
+		{CC5B9482-92D8-4A8A-AD98-A91BC8A29EB1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CC5B9482-92D8-4A8A-AD98-A91BC8A29EB1}.Debug|x86.Build.0 = Debug|Any CPU
+		{CC5B9482-92D8-4A8A-AD98-A91BC8A29EB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC5B9482-92D8-4A8A-AD98-A91BC8A29EB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC5B9482-92D8-4A8A-AD98-A91BC8A29EB1}.Release|x64.ActiveCfg = Release|Any CPU
+		{CC5B9482-92D8-4A8A-AD98-A91BC8A29EB1}.Release|x64.Build.0 = Release|Any CPU
+		{CC5B9482-92D8-4A8A-AD98-A91BC8A29EB1}.Release|x86.ActiveCfg = Release|Any CPU
+		{CC5B9482-92D8-4A8A-AD98-A91BC8A29EB1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
