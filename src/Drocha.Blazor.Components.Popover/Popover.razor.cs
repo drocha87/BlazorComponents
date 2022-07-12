@@ -10,12 +10,22 @@ public partial class Popover : ComponentBase, IAsyncDisposable
 
     [Parameter] public Func<ElementReference>? GetControl { get; set; }
     [Parameter] public RenderFragment ChildContent { get; set; } = default!;
+
     [Parameter] public bool Open { get; set; } = false;
+    [Parameter] public EventCallback<bool> OpenChanged { get; set; }
+
+    [Parameter] public bool Dismissable { get; set; } = false;
 
     public ElementReference RootElement { get; set; }
 
     private readonly string _id = Guid.NewGuid().ToString();
     public string Id => $"drocha-popover-marker-{_id}";
+
+    private Dictionary<string, object> PopoverAttributes =>
+        new()
+        {
+            { "data-visible", Open.ToString().ToLower() },
+        };
 
     IJSObjectReference? module;
 
@@ -43,6 +53,18 @@ public partial class Popover : ComponentBase, IAsyncDisposable
             await module.InvokeVoidAsync("popover.initialize", _id, RootElement, GetControl());
         }
         await base.OnAfterRenderAsync(firstRender);
+    }
+
+    public async Task ClosePopover()
+    {
+        Open = false;
+        if (GetControl is not null)
+        {
+            var target = GetControl();
+            await target.FocusAsync();
+        }
+        await OpenChanged.InvokeAsync(false);
+        // await InvokeAsync(StateHasChanged);
     }
 
     public async ValueTask DisposeAsync()

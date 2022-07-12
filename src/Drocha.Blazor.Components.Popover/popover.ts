@@ -37,14 +37,14 @@ class Popover {
     });
     mutationObserver.observe(source, config);
 
-    // const resizeObserver = new ResizeObserver((entries) => {
-    //   for (const _ of entries) {
-    //     if (this.visible) {
-    //       this.updatePosition();
-    //     }
-    //   }
-    // });
-    // resizeObserver.observe(target);
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const _ of entries) {
+        if (this.visible) {
+          this.updatePosition();
+        }
+      }
+    });
+    resizeObserver.observe(target);
 
     window.addEventListener("resize", (ev) => {
       if (this.visible) {

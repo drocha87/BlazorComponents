@@ -1,2 +1,8 @@
-<div @ref="RootElement" id="@Id" data-visible="@Open.ToString().ToLower()">
+@if (Dismissable && Open)
+{
+    <div class="dismissable" @onclick="ClosePopover">
+    </div>
+}
+
+<div @ref="RootElement" id="@Id" @attributes="PopoverAttributes">
 </div>
