@@ -14,7 +14,7 @@ public partial class Popover : ComponentBase, IAsyncDisposable
     [Parameter] public bool Open { get; set; } = false;
     [Parameter] public EventCallback<bool> OpenChanged { get; set; }
 
-    [Parameter] public bool Dismissable { get; set; } = false;
+    [Parameter] public bool Dismissible { get; set; } = false;
 
     public ElementReference RootElement { get; set; }
 
