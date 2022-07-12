@@ -3,7 +3,7 @@
     {
         @foreach (var fragment in PopoverSvc.Fragments)
         {
-            <div id="@($"drocha-popover-{fragment.Key}")" class="drocha-popover-close">
+            <div data-drocha-popover-id="@fragment.Key" style="position:absolute; width: fit-content;">
                 @fragment.Value
             </div>
         }

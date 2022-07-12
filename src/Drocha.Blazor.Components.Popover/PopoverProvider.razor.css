@@ -1,15 +1,10 @@
 .drocha-popover-provider {
   position: absolute;
+  display: none;
 
+  z-index: 1000;
   height: 100vh;
   width: 100vw;
-}
 
-.drocha-popover-close {
-  display: hidden;
-}
-
-.drocha-popover-open {
-  position: absolute;
-  display: block;
+  pointer-events: none;
 }

@@ -9,7 +9,6 @@ public partial class PopoverProvider : ComponentBase, IDisposable
     protected override void OnInitialized()
     {
         PopoverSvc.OnChanged += UpdateContentHandler;
-        Console.WriteLine("initialized");
     }
 
     private void UpdateContentHandler(object o, RenderFragment f)

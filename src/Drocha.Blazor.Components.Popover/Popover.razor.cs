@@ -8,22 +8,19 @@ public partial class Popover : ComponentBase, IAsyncDisposable
     [Inject] IJSRuntime JS { get; set; } = default!;
     [Inject] PopoverService PopoverSvc { get; set; } = null!;
 
-    [Parameter] public ElementReference TargetElement { get; set; }
+    [Parameter] public Func<ElementReference>? GetControl { get; set; }
     [Parameter] public RenderFragment ChildContent { get; set; } = default!;
     [Parameter] public bool Open { get; set; } = false;
 
     public ElementReference RootElement { get; set; }
 
-    public string Class => "drocha-popover-" + (Open ? "open" : "close");
-
     private readonly string _id = Guid.NewGuid().ToString();
-    public string Id => $"popover-{_id}";
+    public string Id => $"drocha-popover-marker-{_id}";
 
     IJSObjectReference? module;
 
     protected override async Task OnInitializedAsync()
     {
-        module = await JS.InvokeAsync<IJSObjectReference>("import", "./_content/Drocha.Blazor.Components.Popover/popover.js");
         await base.OnInitializedAsync();
     }
 
@@ -35,12 +32,15 @@ public partial class Popover : ComponentBase, IAsyncDisposable
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        if (GetControl is null)
+        {
+            throw new NullReferenceException(nameof(GetControl));
+        }
+
         if (firstRender)
         {
-            if (module is not null)
-            {
-                await module.InvokeVoidAsync("popover.initialize", RootElement, TargetElement);
-            }
+            module = await JS.InvokeAsync<IJSObjectReference>("import", "./_content/Drocha.Blazor.Components.Popover/popover.js");
+            await module.InvokeVoidAsync("popover.initialize", _id, RootElement, GetControl());
         }
         await base.OnAfterRenderAsync(firstRender);
     }

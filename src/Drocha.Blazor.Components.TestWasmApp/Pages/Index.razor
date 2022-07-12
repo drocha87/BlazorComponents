@@ -4,20 +4,32 @@
 
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
+<Popover GetControl="@(() => _ref)" Open="_open">
+    <div class="card">
+        I'm a popover uhulll
+    </div>
+</Popover>
+
+<div >
+    <h1 >Hello, world!</h1>
+</div>
 
 Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
 
-<Popover TargetElement="@_button">
-    <div class="pa-4" style="background-color: red;">
-        I'm a popover uhulll
-    </div>
-</Popover>
-
-<button @ref="_button">Click Me</button>
+<div style="display: flex; justify-content: start;">
+    <button @ref="_ref" @onclick="@(() => _open = !_open)">Click Me</button>
+</div>
 
 @code {
-    ElementReference _button;
+    public ElementReference _ref;
+    bool _open = false;
 }
+
+<style>
+    .card {
+        padding: 1rem;
+        background-color: cyan;
+    }
+</style>
