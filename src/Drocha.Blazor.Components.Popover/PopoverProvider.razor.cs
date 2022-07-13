@@ -27,6 +27,12 @@ public partial class PopoverProvider : ComponentBase, IDisposable
             await module.InvokeVoidAsync("initializeWindowResizeObserver", reference);
         }
 
+        await RedrawPopovers();
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    private async Task RedrawPopovers()
+    {
         foreach (var fragment in PopoverSvc.Fragments)
         {
             var el = fragment.Value;
@@ -38,10 +44,10 @@ public partial class PopoverProvider : ComponentBase, IDisposable
                     el.GetControl!(),
                     el.Direction,
                     el.FlipToFit,
-                    el.Margin);
+                    el.Margin)
+                    .ConfigureAwait(false);
             }
         }
-        await base.OnAfterRenderAsync(firstRender);
     }
 
     private async Task UpdateContentHandler(object o, Popover el)
@@ -49,31 +55,10 @@ public partial class PopoverProvider : ComponentBase, IDisposable
         await InvokeAsync(StateHasChanged);
     }
 
-    private void CloseDismissible(Popover el)
-    {
-        el.Close();
-    }
+    private void CloseDismissible(Popover el) => el.Close();
 
     [JSInvokable]
-    public async Task WindowResized()
-    {
-        if (PopoverSvc.VisibleElements > 0)
-        {
-            var fragments = PopoverSvc.Fragments.Where(x => x.Value.Open == true);
-
-            foreach (var fragment in fragments)
-            {
-                var el = fragment.Value;
-                await module!.InvokeVoidAsync(
-                   "updatePosition",
-                   el.Ref,
-                   el.GetControl!(),
-                   el.Direction,
-                   el.FlipToFit,
-                   el.Margin);
-            }
-        }
-    }
+    public async Task WindowResized() => await RedrawPopovers();
 
     public void Dispose()
     {
