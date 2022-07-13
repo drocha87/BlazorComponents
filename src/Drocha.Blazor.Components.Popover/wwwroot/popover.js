@@ -15,10 +15,8 @@ export function initializeWindowResizeObserver(dotNetReference) {
 export function calculateTopOffset(sourceRect, targetRect, flipToFit, margin) {
     const { height } = sourceRect;
     const { top, bottom } = targetRect;
-    // TODO: set padding in the C# code
     let offset = top - height - margin;
     if (offset < 0 && flipToFit) {
-        // flip to bottom if there's not enough space
         offset = bottom + margin;
     }
     return offset;
@@ -113,11 +111,8 @@ export function updatePosition(source, target, direction, flipToFit, margin) {
                 if (position.needFlip && flipToFit) {
                     let attemptLeft = canPlaceOnLeft(sourceRect, targetRect, margin);
                     if (!attemptLeft.needFlip) {
-                        // if left has enough space put it there
                         position = attemptLeft;
                     }
-                    // otherwise keep it in the same place
-                    // TODO: try put it on top
                 }
                 top = position.top;
                 left = position.left;
@@ -129,11 +124,8 @@ export function updatePosition(source, target, direction, flipToFit, margin) {
                 if (position.needFlip && flipToFit) {
                     let attemptRight = canPlaceOnRight(sourceRect, targetRect, margin);
                     if (!attemptRight.needFlip) {
-                        // if left has enough space put it there
                         position = attemptRight;
                     }
-                    // otherwise keep it in the same place
-                    // TODO: try put it on top
                 }
                 top = position.top;
                 left = position.left;
