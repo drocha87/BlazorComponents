@@ -1,10 +1,11 @@
 ﻿@page "/"
 
 @using Drocha.Blazor.Components.Popover
+@using Drocha.Blazor.Components.Tooltip
 
 <PageTitle>Index</PageTitle>
 
-<Popover GetControl="@(() => _ref)" @bind-Open="_open" Dismissable>
+<Popover GetControl="@(() => _ref)" @bind-Open="_open" >
     <div class="card">
         I'm a popover uhulll
     </div>
@@ -14,7 +15,16 @@
     <h1 >Hello, world!</h1>
 </div>
 
-Welcome to your new app.
+<Tooltip>
+    <TooltipContent>
+        This is a tooltip very nice!
+    </TooltipContent>
+    <ChildContent>
+        <div>
+            Welcome to your new app.
+        </div>
+    </ChildContent>
+</Tooltip>
 
 <SurveyPrompt Title="How is Blazor working for you?" />
 

@@ -15,4 +15,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Drocha.Blazor.Components.Popover\Drocha.Blazor.Components.Popover.csproj" />
+  </ItemGroup>
+
 </Project>

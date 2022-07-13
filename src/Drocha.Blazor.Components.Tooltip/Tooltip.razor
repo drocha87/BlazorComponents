@@ -1,3 +1,15 @@
-﻿<div class="my-component">
-    This component is defined in the <strong>Drocha.Blazor.Components.Tooltip</strong> library.
+﻿@using Drocha.Blazor.Components.Popover
+
+<Popover @bind-Open="_open" GetControl="@(() => _ref)">
+    <div class="card">
+        @TooltipContent
+    </div>
+</Popover>
+
+@*  https://github.com/dotnet/aspnetcore/pull/40829
+    FIXME: remove this piece of code when Blazor implements `onmouseenter` and `onmouseleave`
+    I'm setting the events on JS because `onmouseover` and `onmouseout` causes the tooltip to blink
+    when you move the mouse *@
+<div @ref="_ref">
+    @ChildContent
 </div>

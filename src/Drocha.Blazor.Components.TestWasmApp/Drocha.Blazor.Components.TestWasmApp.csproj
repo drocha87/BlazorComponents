@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Drocha.Blazor.Components.Popover\Drocha.Blazor.Components.Popover.csproj" />
+    <ProjectReference Include="..\Drocha.Blazor.Components.Tooltip\Drocha.Blazor.Components.Tooltip.csproj" />
   </ItemGroup>
 
 </Project>
