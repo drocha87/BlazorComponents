@@ -8,3 +8,25 @@
 
   pointer-events: none;
 }
+
+.drocha-overlay {
+  height: 100vh;
+  width: 100vw;
+  pointer-events: all;
+}
+
+div[data-drocha-popover-provider-visible="true"] {
+  display: block;
+}
+
+div[data-drocha-popover-provider-visible="false"] {
+  display: none;
+}
+
+div[data-drocha-popover-visible="true"] {
+  display: block;
+}
+
+div[data-drocha-popover-visible="false"] {
+  display: none;
+}

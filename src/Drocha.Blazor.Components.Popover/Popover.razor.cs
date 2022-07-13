@@ -1,11 +1,9 @@
 using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
 
 namespace Drocha.Blazor.Components.Popover;
 
-public partial class Popover : ComponentBase, IAsyncDisposable
+public partial class Popover : ComponentBase
 {
-    [Inject] IJSRuntime JS { get; set; } = default!;
     [Inject] PopoverService PopoverSvc { get; set; } = null!;
 
     [Parameter] public Func<ElementReference>? GetControl { get; set; }
@@ -16,28 +14,27 @@ public partial class Popover : ComponentBase, IAsyncDisposable
 
     [Parameter] public bool Dismissible { get; set; } = false;
 
-    public ElementReference RootElement { get; set; }
+    public ElementReference Ref { get; set; }
 
     private readonly string _id = Guid.NewGuid().ToString();
-    public string Id => $"drocha-popover-marker-{_id}";
+    public string Id => _id;
 
-    private Dictionary<string, object> PopoverAttributes =>
-        new()
-        {
-            { "data-visible", Open.ToString().ToLower() },
-        };
-
-    IJSObjectReference? module;
+    private bool _open;
 
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
+        _open = Open;
+        PopoverSvc.AddFragment(this);
     }
 
-    protected override async Task OnParametersSetAsync()
+    protected override void OnParametersSet()
     {
-        PopoverSvc.AddFragment(_id, ChildContent);
-        await InvokeAsync(StateHasChanged);
+        if (_open != Open)
+        {
+            _open = Open;
+            PopoverSvc.UpdateVisibility(_id);
+        }
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -49,34 +46,17 @@ public partial class Popover : ComponentBase, IAsyncDisposable
 
         if (firstRender)
         {
-            module = await JS.InvokeAsync<IJSObjectReference>("import", "./_content/Drocha.Blazor.Components.Popover/popover.js");
-            await module.InvokeVoidAsync("popover.initialize", _id, RootElement, GetControl());
         }
         await base.OnAfterRenderAsync(firstRender);
     }
 
-    public async Task ClosePopover()
+    public void Close()
     {
-        Open = false;
-        if (GetControl is not null)
+        if (_open)
         {
-            var target = GetControl();
-            await target.FocusAsync();
+            Open = _open = false;
+            PopoverSvc.UpdateVisibility(_id);
+            OpenChanged.InvokeAsync(_open).ConfigureAwait(false);
         }
-        await OpenChanged.InvokeAsync(false);
-        // await InvokeAsync(StateHasChanged);
-    }
-
-    public async ValueTask DisposeAsync()
-    {
-        try
-        {
-            if (module is not null)
-            {
-                await module.DisposeAsync();
-            }
-        }
-        catch (JSDisconnectedException) { }
-        catch (TaskCanceledException) { }
     }
 }
