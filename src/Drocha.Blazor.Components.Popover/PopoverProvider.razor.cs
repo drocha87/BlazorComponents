@@ -27,12 +27,18 @@ public partial class PopoverProvider : ComponentBase, IDisposable
             await module.InvokeVoidAsync("initializeWindowResizeObserver", reference);
         }
 
-        foreach(var fragment in PopoverSvc.Fragments)
+        foreach (var fragment in PopoverSvc.Fragments)
         {
             var el = fragment.Value;
             if (el.Open)
             {
-                await module!.InvokeVoidAsync("updatePosition", el.Ref, el.GetControl!());
+                await module!.InvokeVoidAsync(
+                    "updatePosition",
+                    el.Ref,
+                    el.GetControl!(),
+                    el.Direction,
+                    el.FlipToFit,
+                    el.Margin);
             }
         }
         await base.OnAfterRenderAsync(firstRender);
@@ -57,8 +63,14 @@ public partial class PopoverProvider : ComponentBase, IDisposable
 
             foreach (var fragment in fragments)
             {
-                var element = fragment.Value;
-                await module!.InvokeVoidAsync("updatePosition", element.Ref, element.GetControl!());
+                var el = fragment.Value;
+                await module!.InvokeVoidAsync(
+                   "updatePosition",
+                   el.Ref,
+                   el.GetControl!(),
+                   el.Direction,
+                   el.FlipToFit,
+                   el.Margin);
             }
         }
     }

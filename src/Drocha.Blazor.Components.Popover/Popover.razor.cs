@@ -2,6 +2,14 @@ using Microsoft.AspNetCore.Components;
 
 namespace Drocha.Blazor.Components.Popover;
 
+public enum Direction
+{
+    Top,
+    Right,
+    Left,
+    Bottom,
+}
+
 public partial class Popover : ComponentBase
 {
     [Inject] PopoverService PopoverSvc { get; set; } = null!;
@@ -13,6 +21,10 @@ public partial class Popover : ComponentBase
     [Parameter] public EventCallback<bool> OpenChanged { get; set; }
 
     [Parameter] public bool Dismissible { get; set; } = false;
+
+    [Parameter] public bool FlipToFit { get; set; } = true;
+    [Parameter] public Direction Direction { get; set; } = Direction.Top;
+    [Parameter] public int Margin { get; set; } = 2;
 
     public ElementReference Ref { get; set; }
 

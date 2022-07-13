@@ -11,6 +11,6 @@ The main goal of this project is provide components to be used in my personal pr
 These are some of the components I expect to implement in the next couple months
 
 - [x] Popover (partial implemented)
-- [ ] Tooltip
+- [x] Tooltip
 - [ ] Dialog
 - [ ] Mention Textarea

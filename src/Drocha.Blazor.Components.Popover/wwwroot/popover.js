@@ -12,31 +12,150 @@ export function initializeWindowResizeObserver(dotNetReference) {
         yield dotNetReference.invokeMethodAsync("WindowResized");
     }));
 }
-export function calculateTopOffset(sourceRect, targetRect) {
+export function calculateTopOffset(sourceRect, targetRect, flipToFit, margin) {
     const { height } = sourceRect;
     const { top, bottom } = targetRect;
     // TODO: set padding in the C# code
-    let offset = top - height - 2;
-    if (offset < 0) {
+    let offset = top - height - margin;
+    if (offset < 0 && flipToFit) {
         // flip to bottom if there's not enough space
-        offset = bottom + 2;
+        offset = bottom + margin;
     }
     return offset;
 }
-export function calculateLeftOffset(sourceRect, targetRect) {
+export function calculateLeftOffset(sourceRect, targetRect, flipToFit, margin) {
     const { width } = sourceRect;
     const { left, width: tWidth } = targetRect;
     const remainingWidth = window.innerWidth - left - width;
     let offset = left;
-    if (remainingWidth <= 0) {
+    if (remainingWidth <= 0 && flipToFit) {
         offset = left - Math.abs(width - tWidth);
     }
     return offset;
 }
-export function updatePosition(source, target) {
+var Direction;
+(function (Direction) {
+    Direction[Direction["Top"] = 0] = "Top";
+    Direction[Direction["Right"] = 1] = "Right";
+    Direction[Direction["Left"] = 2] = "Left";
+    Direction[Direction["Bottom"] = 3] = "Bottom";
+})(Direction || (Direction = {}));
+function canPlaceOnTop(sourceRect, targetRect, margin) {
+    const position = { top: 0, left: 0, needFlip: false };
+    const { height } = sourceRect;
+    const { top, left } = targetRect;
+    position.top = top - height - margin;
+    position.left = left;
+    if (position.top < 0) {
+        position.needFlip = true;
+    }
+    return position;
+}
+function canPlaceOnRight(sourceRect, targetRect, margin) {
+    const position = { top: 0, left: 0, needFlip: false };
+    const { innerWidth } = window;
+    const { height, width } = sourceRect;
+    const { top: tTop, right: tRight, height: tHeight } = targetRect;
+    const center = Math.abs(height - tHeight) / 2;
+    position.top = tTop - center;
+    position.left = tRight + margin;
+    if (position.left + width + margin > innerWidth) {
+        position.needFlip = true;
+    }
+    return position;
+}
+function canPlaceOnLeft(sourceRect, targetRect, margin) {
+    const position = { top: 0, left: 0, needFlip: false };
+    const { height, width } = sourceRect;
+    const { top: tTop, left: tLeft, height: tHeight } = targetRect;
+    const center = Math.abs(height - tHeight) / 2;
+    position.top = tTop - center;
+    position.left = tLeft - width - margin;
+    if (position.left < 0) {
+        position.needFlip = true;
+    }
+    return position;
+}
+function canPlaceOnBottom(sourceRect, targetRect, margin) {
+    const position = { top: 0, left: 0, needFlip: false };
+    const { innerHeight } = window;
+    const { height } = sourceRect;
+    const { bottom, left } = targetRect;
+    position.top = bottom + margin;
+    position.left = left;
+    if (position.top + height > innerHeight) {
+        position.needFlip = true;
+    }
+    return position;
+}
+export function updatePosition(source, target, direction, flipToFit, margin) {
     const sourceRect = source.getBoundingClientRect();
     const targetRect = target.getBoundingClientRect();
-    source.style.top = `${calculateTopOffset(sourceRect, targetRect)}px`;
-    source.style.left = `${calculateLeftOffset(sourceRect, targetRect)}px`;
+    let top = 0;
+    let left = 0;
+    switch (direction) {
+        case Direction.Top:
+            {
+                let position = canPlaceOnTop(sourceRect, targetRect, margin);
+                if (position.needFlip) {
+                    let attemptBottom = canPlaceOnBottom(sourceRect, targetRect, margin);
+                    if (!attemptBottom.needFlip) {
+                        position = attemptBottom;
+                    }
+                }
+                top = position.top;
+                left = position.left;
+            }
+            break;
+        case Direction.Right:
+            {
+                let position = canPlaceOnRight(sourceRect, targetRect, margin);
+                if (position.needFlip && flipToFit) {
+                    let attemptLeft = canPlaceOnLeft(sourceRect, targetRect, margin);
+                    if (!attemptLeft.needFlip) {
+                        // if left has enough space put it there
+                        position = attemptLeft;
+                    }
+                    // otherwise keep it in the same place
+                    // TODO: try put it on top
+                }
+                top = position.top;
+                left = position.left;
+            }
+            break;
+        case Direction.Left:
+            {
+                let position = canPlaceOnLeft(sourceRect, targetRect, margin);
+                if (position.needFlip && flipToFit) {
+                    let attemptRight = canPlaceOnRight(sourceRect, targetRect, margin);
+                    if (!attemptRight.needFlip) {
+                        // if left has enough space put it there
+                        position = attemptRight;
+                    }
+                    // otherwise keep it in the same place
+                    // TODO: try put it on top
+                }
+                top = position.top;
+                left = position.left;
+            }
+            break;
+        case Direction.Bottom:
+            {
+                let position = canPlaceOnBottom(sourceRect, targetRect, margin);
+                if (position.needFlip) {
+                    let attemptTop = canPlaceOnTop(sourceRect, targetRect, margin);
+                    if (!attemptTop.needFlip) {
+                        position = attemptTop;
+                    }
+                }
+                top = position.top;
+                left = position.left;
+            }
+            break;
+        default:
+            throw new Error("unknown popover direction");
+    }
+    source.style.top = `${top}px`;
+    source.style.left = `${left}px`;
 }
 //# sourceMappingURL=popover.js.map

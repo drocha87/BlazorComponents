@@ -5,13 +5,17 @@
 
 <PageTitle>Index</PageTitle>
 
-<Popover GetControl="@(() => _ref)" @bind-Open="_open" >
+<Popover @bind-Open="_open"
+         GetControl="@(() => _ref)"
+         Margin="10"
+         FlipToFit
+         Direction="Direction.Bottom">
     <div class="card">
         I'm a popover uhulll
     </div>
 </Popover>
 
-<div >
+<div>
     <h1 >Hello, world!</h1>
 </div>
 
