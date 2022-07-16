@@ -21,6 +21,7 @@ public partial class Popover : ComponentBase
     [Parameter] public EventCallback<bool> OpenChanged { get; set; }
 
     [Parameter] public bool Dismissible { get; set; } = false;
+    [Parameter] public bool DisableArrow { get; set; } = false;
 
     [Parameter] public bool FlipToFit { get; set; } = true;
     [Parameter] public Direction Direction { get; set; } = Direction.Top;

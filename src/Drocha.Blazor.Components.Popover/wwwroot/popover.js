@@ -40,10 +40,10 @@ var Direction;
 })(Direction || (Direction = {}));
 function canPlaceOnTop(sourceRect, targetRect, margin) {
     const position = { top: 0, left: 0, needFlip: false };
-    const { height } = sourceRect;
-    const { top, left } = targetRect;
+    const { height, width } = sourceRect;
+    const { top, left, width: tWidth } = targetRect;
     position.top = top - height - margin;
-    position.left = left;
+    position.left = left - Math.abs(width - tWidth) / 2;
     if (position.top < 0) {
         position.needFlip = true;
     }
@@ -77,10 +77,10 @@ function canPlaceOnLeft(sourceRect, targetRect, margin) {
 function canPlaceOnBottom(sourceRect, targetRect, margin) {
     const position = { top: 0, left: 0, needFlip: false };
     const { innerHeight } = window;
-    const { height } = sourceRect;
-    const { bottom, left } = targetRect;
+    const { height, width } = sourceRect;
+    const { bottom, left, width: tWidth } = targetRect;
     position.top = bottom + margin;
-    position.left = left;
+    position.left = left - Math.abs(width - tWidth) / 2;
     if (position.top + height > innerHeight) {
         position.needFlip = true;
     }
@@ -91,6 +91,7 @@ export function updatePosition(source, target, direction, flipToFit, margin) {
     const targetRect = target.getBoundingClientRect();
     let top = 0;
     let left = 0;
+    let placement = "top";
     switch (direction) {
         case Direction.Top:
             {
@@ -99,6 +100,7 @@ export function updatePosition(source, target, direction, flipToFit, margin) {
                     let attemptBottom = canPlaceOnBottom(sourceRect, targetRect, margin);
                     if (!attemptBottom.needFlip) {
                         position = attemptBottom;
+                        placement = "bottom";
                     }
                 }
                 top = position.top;
@@ -108,10 +110,12 @@ export function updatePosition(source, target, direction, flipToFit, margin) {
         case Direction.Right:
             {
                 let position = canPlaceOnRight(sourceRect, targetRect, margin);
+                placement = "right";
                 if (position.needFlip && flipToFit) {
                     let attemptLeft = canPlaceOnLeft(sourceRect, targetRect, margin);
                     if (!attemptLeft.needFlip) {
                         position = attemptLeft;
+                        placement = "left";
                     }
                 }
                 top = position.top;
@@ -121,10 +125,12 @@ export function updatePosition(source, target, direction, flipToFit, margin) {
         case Direction.Left:
             {
                 let position = canPlaceOnLeft(sourceRect, targetRect, margin);
+                placement = "left";
                 if (position.needFlip && flipToFit) {
                     let attemptRight = canPlaceOnRight(sourceRect, targetRect, margin);
                     if (!attemptRight.needFlip) {
                         position = attemptRight;
+                        placement = "right";
                     }
                 }
                 top = position.top;
@@ -134,10 +140,12 @@ export function updatePosition(source, target, direction, flipToFit, margin) {
         case Direction.Bottom:
             {
                 let position = canPlaceOnBottom(sourceRect, targetRect, margin);
+                placement = "bottom";
                 if (position.needFlip) {
                     let attemptTop = canPlaceOnTop(sourceRect, targetRect, margin);
                     if (!attemptTop.needFlip) {
                         position = attemptTop;
+                        placement = "top";
                     }
                 }
                 top = position.top;
@@ -149,5 +157,6 @@ export function updatePosition(source, target, direction, flipToFit, margin) {
     }
     source.style.top = `${top}px`;
     source.style.left = `${left}px`;
+    source.setAttribute("data-drocha-popover-placement", placement);
 }
 //# sourceMappingURL=popover.js.map

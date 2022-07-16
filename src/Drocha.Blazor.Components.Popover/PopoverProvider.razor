@@ -1,6 +1,6 @@
 <div id="drocha-popover-provider"
      class="drocha-popover-provider"
-     data-drocha-popover-provider-visible="@((PopoverSvc.VisibleElements > 0).ToString().ToLower())"
+     data-drocha-popover-provider-visible="@((PopoverSvc!.VisibleElements > 0).ToString().ToLower())"
      @attributes="_attributes">
 
     @if (PopoverSvc is not null)
@@ -18,6 +18,7 @@
             <div @ref="element.Ref"
                  data-drocha-popover-id="@element.Id"
                  data-drocha-popover-visible="@(element.Open.ToString().ToLower())"
+                 data-drocha-popover-arrow="@(!element.DisableArrow)"
                  style="position:absolute; width: fit-content;">
                 @element.ChildContent
             </div>
