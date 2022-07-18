@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
-namespace DrochaBlazor;
+namespace DrBlazor;
 
 public partial class PopoverProvider : ComponentBase, IDisposable
 {

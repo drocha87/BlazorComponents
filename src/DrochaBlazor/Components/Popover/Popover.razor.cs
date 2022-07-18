@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components;
 
-namespace DrochaBlazor;
+namespace DrBlazor;
 
 public enum Direction
 {
