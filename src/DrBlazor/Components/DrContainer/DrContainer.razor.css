@@ -1,0 +1,14 @@
+.dr-container {
+  border-radius: var(--dr-border-radius);
+  padding: var(--dr-padding);
+}
+
+.dr-container-light {
+  background-color: var(--dr-theme-light-primary-container);
+  color: var(--dr-theme-light-on-surface);
+}
+
+.dr-container-dark {
+  background-color: var(--dr-theme-dark-primary-container);
+  color: var(--dr-theme-dark-on-surface);
+}
