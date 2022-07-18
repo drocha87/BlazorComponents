@@ -1,0 +1,17 @@
+﻿@namespace DrBlazor
+
+<Popover @bind-Open="_open"
+         GetControl="@(() => _ref)"
+         FlipToFit
+         DisableArrow
+         Direction="Direction.Top">
+    @TooltipContent
+</Popover>
+
+@*  https://github.com/dotnet/aspnetcore/pull/40829
+    FIXME: remove this piece of code when Blazor implements `onmouseenter` and `onmouseleave`
+    I'm setting the events on JS because `onmouseover` and `onmouseout` causes the tooltip to blink
+    when you move the mouse *@
+<div @ref="_ref">
+    @ChildContent
+</div>
