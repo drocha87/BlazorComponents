@@ -4,42 +4,6 @@ export function initializeWindowResizeObserver(dotNetReference: any) {
   });
 }
 
-export function calculateTopOffset(
-  sourceRect: DOMRect,
-  targetRect: DOMRect,
-  flipToFit: boolean,
-  margin: number
-) {
-  const { height } = sourceRect;
-  const { top, bottom } = targetRect;
-
-  // TODO: set padding in the C# code
-  let offset = top - height - margin;
-  if (offset < 0 && flipToFit) {
-    // flip to bottom if there's not enough space
-    offset = bottom + margin;
-  }
-  return offset;
-}
-
-export function calculateLeftOffset(
-  sourceRect: DOMRect,
-  targetRect: DOMRect,
-  flipToFit: boolean,
-  margin: number
-) {
-  const { width } = sourceRect;
-  const { left, width: tWidth } = targetRect;
-
-  const remainingWidth = window.innerWidth - left - width;
-
-  let offset = left;
-  if (remainingWidth <= 0 && flipToFit) {
-    offset = left - Math.abs(width - tWidth);
-  }
-  return offset;
-}
-
 interface Position {
   top: number;
   left: number;
@@ -64,7 +28,7 @@ function canPlaceOnTop(
   const { top, left, width: tWidth } = targetRect;
 
   position.top = top - height - margin;
-  position.left = left - Math.abs(width - tWidth) / 2;
+  position.left = Math.abs(left - ((width - tWidth) / 2));
 
   if (position.top < 0) {
     position.needFlip = true;
@@ -127,7 +91,7 @@ function canPlaceOnBottom(
   const { bottom, left, width: tWidth } = targetRect;
 
   position.top = bottom + margin;
-  position.left = left - Math.abs(width - tWidth) / 2;
+  position.left = Math.abs(left - ((width - tWidth) / 2));
 
   if (position.top + height > innerHeight) {
     position.needFlip = true;

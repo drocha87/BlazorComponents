@@ -12,25 +12,6 @@ export function initializeWindowResizeObserver(dotNetReference) {
         yield dotNetReference.invokeMethodAsync("WindowResized");
     }));
 }
-export function calculateTopOffset(sourceRect, targetRect, flipToFit, margin) {
-    const { height } = sourceRect;
-    const { top, bottom } = targetRect;
-    let offset = top - height - margin;
-    if (offset < 0 && flipToFit) {
-        offset = bottom + margin;
-    }
-    return offset;
-}
-export function calculateLeftOffset(sourceRect, targetRect, flipToFit, margin) {
-    const { width } = sourceRect;
-    const { left, width: tWidth } = targetRect;
-    const remainingWidth = window.innerWidth - left - width;
-    let offset = left;
-    if (remainingWidth <= 0 && flipToFit) {
-        offset = left - Math.abs(width - tWidth);
-    }
-    return offset;
-}
 var Direction;
 (function (Direction) {
     Direction[Direction["Top"] = 0] = "Top";
@@ -43,7 +24,7 @@ function canPlaceOnTop(sourceRect, targetRect, margin) {
     const { height, width } = sourceRect;
     const { top, left, width: tWidth } = targetRect;
     position.top = top - height - margin;
-    position.left = left - Math.abs(width - tWidth) / 2;
+    position.left = Math.abs(left - ((width - tWidth) / 2));
     if (position.top < 0) {
         position.needFlip = true;
     }
@@ -80,7 +61,7 @@ function canPlaceOnBottom(sourceRect, targetRect, margin) {
     const { height, width } = sourceRect;
     const { bottom, left, width: tWidth } = targetRect;
     position.top = bottom + margin;
-    position.left = left - Math.abs(width - tWidth) / 2;
+    position.left = Math.abs(left - ((width - tWidth) / 2));
     if (position.top + height > innerHeight) {
         position.needFlip = true;
     }
