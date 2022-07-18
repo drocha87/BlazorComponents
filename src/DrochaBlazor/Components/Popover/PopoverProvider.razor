@@ -1,0 +1,29 @@
+@namespace DrochaBlazor
+
+<div id="drocha-popover-provider"
+     class="drocha-popover-provider"
+     data-drocha-popover-provider-visible="@((PopoverSvc!.VisibleElements > 0).ToString().ToLower())"
+     @attributes="_attributes">
+
+    @if (PopoverSvc is not null)
+    {
+        @foreach (var fragment in PopoverSvc.Fragments)
+        {
+            var element = fragment.Value;
+
+            @if (element.Dismissible && element.Open)
+            {
+                <div class="drocha-overlay" @onclick="@(() => CloseDismissible(element))">
+                </div>
+            }
+
+            <div @ref="element.Ref"
+                 data-drocha-popover-id="@element.Id"
+                 data-drocha-popover-visible="@(element.Open.ToString().ToLower())"
+                 data-drocha-popover-arrow="@(!element.DisableArrow)"
+                 style="position:absolute; width: fit-content;">
+                @element.ChildContent
+            </div>
+        }
+    }
+</div>

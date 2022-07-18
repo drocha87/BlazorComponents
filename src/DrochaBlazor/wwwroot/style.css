@@ -1,0 +1,142 @@
+:root {
+    --dr-color-primary-0: #000;
+    --dr-color-primary-10: #21005D;
+    --dr-color-primary-20: #381E72;
+    --dr-color-primary-30: #4F378B;
+    --dr-color-primary-40: #6750A4;
+    --dr-color-primary-50: #7F67BE;
+    --dr-color-primary-60: #9A82DB;
+    --dr-color-primary-70: #B69DF8;
+    --dr-color-primary-80: #D0BCFF;
+    --dr-color-primary-90: #EADDFF;
+    --dr-color-primary-95: #F6EDFF;
+    --dr-color-primary-99: #FFFBFE;
+    --dr-color-primary-100: #fff;
+
+    --dr-color-secondary-0: #000;
+    --dr-color-secondary-10: #1D192B;
+    --dr-color-secondary-20: #332D41;
+    --dr-color-secondary-30: #4A4458;
+    --dr-color-secondary-40: #625B71;
+    --dr-color-secondary-50: #7A7289;
+    --dr-color-secondary-60: #958DA5;
+    --dr-color-secondary-70: #B0A7C0;
+    --dr-color-secondary-80: #CCC2DC;
+    --dr-color-secondary-90: #E8DEF8;
+    --dr-color-secondary-95: #F6EDFF;
+    --dr-color-secondary-99: #FFFBFE;
+    --dr-color-secondary-100: #fff;
+
+    --dr-color-tertiary-0: #000;
+    --dr-color-tertiary-10: #31111D;
+    --dr-color-tertiary-20: #492532;
+    --dr-color-tertiary-30: #633B48;
+    --dr-color-tertiary-40: #7D5260;
+    --dr-color-tertiary-50: #986977;
+    --dr-color-tertiary-60: #B58392;
+    --dr-color-tertiary-70: #D29DAC;
+    --dr-color-tertiary-80: #EFB8C8;
+    --dr-color-tertiary-90: #FFD8E4;
+    --dr-color-tertiary-95: #FFECF1;
+    --dr-color-tertiary-99: #FFFBFA;
+    --dr-color-tertiary-100: #fff;
+
+    --dr-color-error-0: #000;
+    --dr-color-error-10: #410E0B;
+    --dr-color-error-20: #601410;
+    --dr-color-error-30: #8C1D18;
+    --dr-color-error-40: #B3261E;
+    --dr-color-error-50: #DC362E;
+    --dr-color-error-60: #E46962;
+    --dr-color-error-70: #EC928E;
+    --dr-color-error-80: #F2B8B5;
+    --dr-color-error-90: #F9DEDC;
+    --dr-color-error-95: #FCEEEE;
+    --dr-color-error-99: #FFFBF9;
+    --dr-color-error-100: #fff;
+
+    --dr-color-neutral-0: #000;
+    --dr-color-neutral-10: #1C1B1F;
+    --dr-color-neutral-20: #313033;
+    --dr-color-neutral-30: #484649;
+    --dr-color-neutral-40: #605D62;
+    --dr-color-neutral-50: #787579;
+    --dr-color-neutral-60: #939094;
+    --dr-color-neutral-70: #AEAAAE;
+    --dr-color-neutral-80: #C9C5CA;
+    --dr-color-neutral-90: #E6E1E5;
+    --dr-color-neutral-95: #F4EFF4;
+    --dr-color-neutral-99: #FFFBFE;
+    --dr-color-neutral-100: #fff;
+
+    --dr-color-neutral-variant-0: #000;
+    --dr-color-neutral-variant-10: #1D1A22;
+    --dr-color-neutral-variant-20: #322F37;
+    --dr-color-neutral-variant-30: #49454F;
+    --dr-color-neutral-variant-40: #605D66;
+    --dr-color-neutral-variant-50: #79747E;
+    --dr-color-neutral-variant-60: #938F99;
+    --dr-color-neutral-variant-70: #AEA9B4;
+    --dr-color-neutral-variant-80: #CAC4D0;
+    --dr-color-neutral-variant-90: #E7E0EC;
+    --dr-color-neutral-variant-95: #F5EEFA;
+    --dr-color-neutral-variant-99: #FFFBFE;
+    --dr-color-neutral-variant-100: #fff;
+
+    /* light theme */
+    --dr-theme-light-primary: var(--dr-color-primary-40);
+    --dr-theme-light-on-primary: var(--dr-color-primary-100);
+    --dr-theme-light-primary-container: var(--dr-color-primary-90);
+    --dr-theme-light-primary-on-container: var(--dr-color-primary-10);
+    --dr-theme-light-secondary: var(--dr-color-secondary-40);
+    --dr-theme-light-on-secondary: var(--dr-color-secondary-100);
+    --dr-theme-light-secondary-container: var(--dr-color-secondary-90);
+    --dr-theme-light-secondary-on-container: var(--dr-color-secondary-10);
+    --dr-theme-light-tertiary: var(--dr-color-tertiary-40);
+    --dr-theme-light-on-tertiary: var(--dr-color-tertiary-100);
+    --dr-theme-light-tertiary-container: var(--dr-color-tertiary-90);
+    --dr-theme-light-tertiary-on-container: var(--dr-color-tertiary-10);
+    --dr-theme-light-error: var(--dr-color-error-40);
+    --dr-theme-light-on-error: var(--dr-color-error-100);
+    --dr-theme-light-error-container: var(--dr-color-error-90);
+    --dr-theme-light-error-on-container: var(--dr-color-error-10);
+
+    --dr-theme-light-background: var(--dr-color-neutral-99);
+    --dr-theme-light-on-background: var(--dr-color-neutral-10);
+    --dr-theme-light-surface: var(--dr-color-neutral-99);
+    --dr-theme-light-on-surface: var(--dr-color-neutral-10);
+
+    --dr-theme-light-surface-variant: var(--dr-color-neutral-variant-10);
+    --dr-theme-light-on-surface-variant: var(--dr-color-neutral-variant-30);
+    --dr-theme-light-outline: var(--dr-color-neutral-variant-50);
+
+    /* dark theme */
+    --dr-theme-dark-primary: var(--dr-color-primary-80);
+    --dr-theme-dark-on-primary: var(--dr-color-primary-20);
+    --dr-theme-dark-primary-container: var(--dr-color-primary-30);
+    --dr-theme-dark-primary-on-container: var(--dr-color-primary-90);
+    --dr-theme-dark-secondary: var(--dr-color-secondary-80);
+    --dr-theme-dark-on-secondary: var(--dr-color-secondary-20);
+    --dr-theme-dark-secondary-container: var(--dr-color-secondary-30);
+    --dr-theme-dark-secondary-on-container: var(--dr-color-secondary-90);
+    --dr-theme-dark-tertiary: var(--dr-color-tertiary-80);
+    --dr-theme-dark-on-tertiary: var(--dr-color-tertiary-20);
+    --dr-theme-dark-tertiary-container: var(--dr-color-tertiary-30);
+    --dr-theme-dark-tertiary-on-container: var(--dr-color-tertiary-90);
+    --dr-theme-dark-error: var(--dr-color-error-80);
+    --dr-theme-dark-on-error: var(--dr-color-error-20);
+    --dr-theme-dark-error-container: var(--dr-color-error-30);
+    --dr-theme-dark-error-on-container: var(--dr-color-error-90);
+
+    --dr-theme-dark-background: var(--dr-color-neutral-10);
+    --dr-theme-dark-on-background: var(--dr-color-neutral-90);
+    --dr-theme-dark-surface: var(--dr-color-neutral-10);
+    --dr-theme-dark-on-surface: var(--dr-color-neutral-90);
+
+    --dr-theme-dark-surface-variant: var(--dr-color-neutral-variant-30);
+    --dr-theme-dark-on-surface-variant: var(--dr-color-neutral-variant-80);
+    --dr-theme-dark-outline: var(--dr-color-neutral-variant-60);
+
+    /* TODO: define surfaces light */
+    /* TODO: define surfaces dark  */
+}
