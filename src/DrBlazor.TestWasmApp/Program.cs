@@ -1,5 +1,5 @@
 using DrBlazor;
-using Drocha.Blazor.Components.TestWasmApp;
+using DrBlazor.TestWasmApp;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drocha.Blazor.Components.TestWasmApp", "Drocha.Blazor.Components.TestWasmApp\Drocha.Blazor.Components.TestWasmApp.csproj", "{E4326969-B478-4EB2-AABF-62258B9CA3C8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrBlazor.TestWasmApp", "DrBlazor.TestWasmApp\DrBlazor.TestWasmApp.csproj", "{E4326969-B478-4EB2-AABF-62258B9CA3C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drocha.Blazor.Components.TestServerApp", "Drocha.Blazor.Components.TestServerApp\Drocha.Blazor.Components.TestServerApp.csproj", "{DC8DD109-D18E-4352-9B85-4DE31D03F44C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrBlazor.TestServerApp", "DrBlazor.TestServerApp\DrBlazor.TestServerApp.csproj", "{DC8DD109-D18E-4352-9B85-4DE31D03F44C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrBlazor", "DrBlazor\DrBlazor.csproj", "{2F4F6860-69E5-4ADF-96F9-B98A9D3789F3}"
 EndProject

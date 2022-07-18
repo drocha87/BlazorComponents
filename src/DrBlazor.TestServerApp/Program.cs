@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using Drocha.Blazor.Components.TestServerApp.Data;
+using DrBlazor.TestServerApp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

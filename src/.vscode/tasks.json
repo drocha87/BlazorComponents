@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/src/DrBlazor.TestWasmApp/DrBlazor.TestWasmApp.csproj",
+                "${workspaceFolder}/DrBlazor.TestWasmApp/DrBlazor.TestWasmApp.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/src/DrBlazor.TestWasmApp/DrBlazor.TestWasmApp.csproj",
+                "${workspaceFolder}/DrBlazor.TestWasmApp/DrBlazor.TestWasmApp.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/src/DrBlazor.TestWasmApp/DrBlazor.TestWasmApp.csproj"
+                "${workspaceFolder}/DrBlazor.TestWasmApp/DrBlazor.TestWasmApp.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

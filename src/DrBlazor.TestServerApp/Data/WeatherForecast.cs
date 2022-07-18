@@ -1,4 +1,4 @@
-namespace Drocha.Blazor.Components.TestServerApp.Data;
+namespace DrBlazor.TestServerApp.Data;
 
 public class WeatherForecast
 {
