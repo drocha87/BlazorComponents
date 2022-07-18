@@ -21,7 +21,7 @@ public partial class PopoverProvider : ComponentBase, IDisposable
     {
         if (firstRender)
         {
-            module = await JS.InvokeAsync<IJSObjectReference>("import", "./_content/DrochaBlazor/Popover/popover.js");
+            module = await JS.InvokeAsync<IJSObjectReference>("import", "./_content/DrBlazor/Popover/popover.js");
 
             var reference = DotNetObjectReference.Create(this);
             await module.InvokeVoidAsync("initializeWindowResizeObserver", reference);

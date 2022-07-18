@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drocha.Blazor.Components.Po
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drocha.Blazor.Components.Tooltip", "Drocha.Blazor.Components.Tooltip\Drocha.Blazor.Components.Tooltip.csproj", "{4BAEA5F0-E1E6-40F5-8EC8-31B46CAD17EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrochaBlazor", "DrochaBlazor\DrochaBlazor.csproj", "{2F4F6860-69E5-4ADF-96F9-B98A9D3789F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrBlazor", "DrBlazor\DrBlazor.csproj", "{2F4F6860-69E5-4ADF-96F9-B98A9D3789F3}"
 EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
