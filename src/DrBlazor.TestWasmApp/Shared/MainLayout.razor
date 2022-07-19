@@ -1,10 +1,8 @@
-﻿@inherits LayoutComponentBase
+@inherits LayoutComponentBase
 
 @using DrBlazor
 
 @inject DrConfig Config
-
-<PopoverProvider></PopoverProvider>
 
 <div class="page">
     <div class="sidebar">
@@ -13,19 +11,7 @@
 
     <main>
         <div class="top-row px-4">
-            <button @onclick="@(() => Config.ToggleTheme())">
-                @if (Config.Theme.Equals("dark"))
-                {
-                    <DrIcon Icon="light_mode"></DrIcon>
-                }
-                else
-                {
-                    <DrIcon Icon="dark_mode"></DrIcon>
-                }
-            </button>
-
             <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-
         </div>
 
         <article class="content px-4">

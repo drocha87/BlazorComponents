@@ -59,9 +59,27 @@ public class AttrBuilder
         return this;
     }
 
+    public AttrBuilder AddStyle(string property, string value)
+    {
+        if (!string.IsNullOrEmpty(property))
+        {
+            _styles.Add($"{property}: {value}");
+        }
+        return this;
+    }
+
     public AttrBuilder AddData(string key, string? value)
     {
         _attributes.Add(key, value ?? "");
+        return this;
+    }
+
+    public AttrBuilder AddData(string key, bool value)
+    {
+        if (value)
+        {
+            _attributes.Add(key, "");
+        }
         return this;
     }
 
