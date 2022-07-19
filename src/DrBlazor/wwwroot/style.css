@@ -141,5 +141,8 @@
 
   /* TODO: define surfaces light */
   /* TODO: define surfaces dark  */
+
+  --dr-border-radius: 28px;
+  --dr-padding: 24px;
 }
 

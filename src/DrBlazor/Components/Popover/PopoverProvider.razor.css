@@ -1,4 +1,4 @@
-.drocha-popover-provider {
+.dr-popover-provider {
   position: absolute;
   display: none;
 
@@ -9,25 +9,25 @@
   pointer-events: none;
 }
 
-.drocha-overlay {
+.dr-overlay {
   height: 100vh;
   width: 100vw;
   pointer-events: all;
 }
 
-div[data-drocha-popover-provider-visible="true"] {
+div[data-dr-popover-provider-visible="true"] {
   display: block;
 }
 
-div[data-drocha-popover-provider-visible="false"] {
+div[data-dr-popover-provider-visible="false"] {
   display: none;
 }
 
-div[data-drocha-popover-visible="false"] {
+div[data-dr-popover-visible="false"] {
   display: none;
 }
 
-div[data-drocha-popover-visible="true"] {
+div[data-dr-popover-visible="true"] {
   position: relative;
   display: block;
 
@@ -39,8 +39,8 @@ div[data-drocha-popover-visible="true"] {
 }
 
 /* Arrow */
-div[data-drocha-popover-visible="true"][data-drocha-popover-arrow]::after,
-div[data-drocha-popover-visible="true"][data-drocha-popover-arrow]::before {
+div[data-dr-popover-visible="true"][data-dr-popover-arrow]::after,
+div[data-dr-popover-visible="true"][data-dr-popover-arrow]::before {
   content: "";
   position: absolute;
 
@@ -51,8 +51,8 @@ div[data-drocha-popover-visible="true"][data-drocha-popover-arrow]::before {
   border-style: solid;
 }
 
-div[data-drocha-popover-visible="true"][data-drocha-popover-placement="top"]::before,
-div[data-drocha-popover-visible="true"][data-drocha-popover-placement="top"]::after {
+div[data-dr-popover-visible="true"][data-dr-popover-placement="top"]::before,
+div[data-dr-popover-visible="true"][data-dr-popover-placement="top"]::after {
   border-width: 5px 5px 0 5px;
   border-top-color: rgba(0, 0, 0, 0.2);
   bottom: -6px;
@@ -60,13 +60,13 @@ div[data-drocha-popover-visible="true"][data-drocha-popover-placement="top"]::af
   transform: translateX(-50%);
 }
 
-div[data-drocha-popover-visible="true"][data-drocha-popover-placement="top"]::after {
+div[data-dr-popover-visible="true"][data-dr-popover-placement="top"]::after {
   border-top-color: white;
   bottom: -5px;
 }
 
-div[data-drocha-popover-visible="true"][data-drocha-popover-placement="bottom"]::before,
-div[data-drocha-popover-visible="true"][data-drocha-popover-placement="bottom"]::after {
+div[data-dr-popover-visible="true"][data-dr-popover-placement="bottom"]::before,
+div[data-dr-popover-visible="true"][data-dr-popover-placement="bottom"]::after {
   border-width: 0 5px 5px 5px;
   border-bottom-color: rgba(0, 0, 0, 0.2);
   top: -6px;
@@ -74,13 +74,13 @@ div[data-drocha-popover-visible="true"][data-drocha-popover-placement="bottom"]:
   transform: translateX(-50%);
 }
 
-div[data-drocha-popover-visible="true"][data-drocha-popover-placement="bottom"]::after {
+div[data-dr-popover-visible="true"][data-dr-popover-placement="bottom"]::after {
   border-bottom-color: white;
   top: -5px;
 }
 
-div[data-drocha-popover-visible="true"][data-drocha-popover-placement="left"]::before,
-div[data-drocha-popover-visible="true"][data-drocha-popover-placement="left"]::after {
+div[data-dr-popover-visible="true"][data-dr-popover-placement="left"]::before,
+div[data-dr-popover-visible="true"][data-dr-popover-placement="left"]::after {
   border-width: 5px 0 5px 5px;
   border-left-color: rgba(0, 0, 0, 0.2);
   right: -6px;
@@ -88,13 +88,13 @@ div[data-drocha-popover-visible="true"][data-drocha-popover-placement="left"]::a
   transform: translateY(-50%);
 }
 
-div[data-drocha-popover-visible="true"][data-drocha-popover-placement="left"]::after {
+div[data-dr-popover-visible="true"][data-dr-popover-placement="left"]::after {
   border-left-color: white;
   right: -5px;
 }
 
-div[data-drocha-popover-visible="true"][data-drocha-popover-placement="right"]::before,
-div[data-drocha-popover-visible="true"][data-drocha-popover-placement="right"]::after {
+div[data-dr-popover-visible="true"][data-dr-popover-placement="right"]::before,
+div[data-dr-popover-visible="true"][data-dr-popover-placement="right"]::after {
   border-width: 5px 5px 5px 0;
   border-right-color: rgba(0, 0, 0, 0.2);
   left: -6px;
@@ -102,7 +102,7 @@ div[data-drocha-popover-visible="true"][data-drocha-popover-placement="right"]::
   transform: translateY(-50%);
 }
 
-div[data-drocha-popover-visible="true"][data-drocha-popover-placement="right"]::after {
+div[data-dr-popover-visible="true"][data-dr-popover-placement="right"]::after {
   border-right-color: white;
   left: -5px;
 }

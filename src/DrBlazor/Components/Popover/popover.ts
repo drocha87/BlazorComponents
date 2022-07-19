@@ -194,5 +194,5 @@ export function updatePosition(
   source.style.top = `${top}px`;
   source.style.left = `${left}px`;
 
-  source.setAttribute("data-drocha-popover-placement", placement);
+  source.setAttribute("data-dr-popover-placement", placement);
 }

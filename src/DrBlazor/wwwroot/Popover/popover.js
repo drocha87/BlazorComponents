@@ -138,6 +138,6 @@ export function updatePosition(source, target, direction, flipToFit, margin) {
     }
     source.style.top = `${top}px`;
     source.style.left = `${left}px`;
-    source.setAttribute("data-drocha-popover-placement", placement);
+    source.setAttribute("data-dr-popover-placement", placement);
 }
 //# sourceMappingURL=popover.js.map
