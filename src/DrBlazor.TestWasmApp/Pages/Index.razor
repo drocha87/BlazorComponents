@@ -49,6 +49,12 @@
     Eu sou um container
 </DrContainer>
 
+<div id="destination"></div>
+
+<DrTeleport To="#destination">
+    <h1>This will be rendered inside the destination</h1>
+</DrTeleport>
+
 @code {
     public ElementReference _ref;
     bool _open = false;
