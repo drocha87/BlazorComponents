@@ -116,6 +116,6 @@ public partial class Popover : DrComponentBase, IAsyncDisposable
             }
         }
         catch (JSDisconnectedException) { }
-        catch (JSException) { }
+        catch (TaskCanceledException) { }
     }
 }
