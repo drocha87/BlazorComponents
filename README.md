@@ -12,5 +12,6 @@ These are some of the components I expect to implement in the next couple months
 
 - [x] Popover (partial implemented)
 - [x] Tooltip
+- [x] Teleport (like the teleport in vuejs)
 - [ ] Dialog
 - [ ] Mention Textarea
