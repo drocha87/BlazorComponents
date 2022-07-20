@@ -4,8 +4,5 @@ export function teleport(source: HTMLElement, to: string)
     if (!target) {
         throw new Error(`teleport: ${to} is not found on the DOM`);
     }
-    for (const child of source.children) {
-        target.appendChild(child);
-    }
-    source.remove();
+    target.appendChild(source);
 }

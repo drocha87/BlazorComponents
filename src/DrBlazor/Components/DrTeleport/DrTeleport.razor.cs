@@ -13,8 +13,23 @@ public partial class DrTeleport : DrComponentBase, IAsyncDisposable
     [Parameter] public RenderFragment ChildContent { get; set; } = null!;
 
     private ElementReference _ref;
+    private string? _to;
 
     private IJSObjectReference? _module;
+
+    protected override void OnInitialized()
+    {
+        _to = To;
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (!To.Equals(_to) && _module is not null)
+        {
+            _to = To;
+            await _module.InvokeVoidAsync("teleport", _ref, To);
+        }
+    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -37,5 +52,6 @@ public partial class DrTeleport : DrComponentBase, IAsyncDisposable
         }
         catch (JSDisconnectedException) { }
         catch (TaskCanceledException) { }
+        // GC.SuppressFinalize(this);
     }
 }
