@@ -6,6 +6,10 @@ public abstract class DrComponentBase : ComponentBase, IDisposable
 {
     [Inject] public DrConfig Config { get; set; } = null!;
 
+    [Parameter] public ElementReference Ref { get; set; }
+    [Parameter] public EventCallback<ElementReference> RefChanged { get; set; }
+
+
     [Parameter] public string? Style { get; set; }
     [Parameter] public string? Class { get; set; }
 
@@ -27,6 +31,15 @@ public abstract class DrComponentBase : ComponentBase, IDisposable
     public async void ConfigChangedHandler(object sender, DrConfig config)
     {
         await InvokeAsync(StateHasChanged);
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            RefChanged.InvokeAsync(Ref);
+        }
+        base.OnAfterRender(firstRender);
     }
 
     public void Dispose()
