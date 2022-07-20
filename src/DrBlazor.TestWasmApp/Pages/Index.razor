@@ -17,26 +17,26 @@
             A dialog is a type of modal window that appears in front of app content
             to provide critical information or prompt for a decision to be made.
         </p>
-        <Tooltip>
-            <TooltipContent>
+        <DrTooltip>
+            <DrTooltipContent>
                 A nested tooltip inside the popover
-            </TooltipContent>
+            </DrTooltipContent>
             <ChildContent>
                 Hover it to show a tooltip
             </ChildContent>
-        </Tooltip>
+        </DrTooltip>
     </div>
 </Popover>
 
 <div style="margin-top: 4rem;">
-    <Tooltip>
-        <TooltipContent>
+    <DrTooltip>
+        <DrTooltipContent>
             This is a tooltip very nice!
-        </TooltipContent>
+        </DrTooltipContent>
         <ChildContent>
             Hover it to show a tooltip
         </ChildContent>
-    </Tooltip>
+    </DrTooltip>
 </div>
 
 <div style="display: flex; justify-content: start; margin: 4rem 0;">
@@ -58,6 +58,8 @@
 <button @onclick="@ToggleDestination">
     Changed teleport destination
 </button>
+
+<TestDialog> </TestDialog>
 
 @code {
     public int value = 100;

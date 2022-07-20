@@ -3,12 +3,12 @@ using Microsoft.JSInterop;
 
 namespace DrBlazor;
 
-public partial class Tooltip : ComponentBase
+public partial class DrTooltip : DrComponentBase
 {
     [Inject] IJSRuntime JS { get; set; } = null!;
 
     [Parameter] public RenderFragment ChildContent { get; set; } = null!;
-    [Parameter] public RenderFragment TooltipContent { get; set; } = null!;
+    [Parameter] public RenderFragment DrTooltipContent { get; set; } = null!;
 
     private ElementReference _ref;
     private bool _open = false;
@@ -19,7 +19,7 @@ public partial class Tooltip : ComponentBase
     {
         if (firstRender)
         {
-            module = await JS.InvokeAsync<IJSObjectReference>("import", "./_content/DrBlazor/Tooltip/tooltip.js");
+            module = await JS.InvokeAsync<IJSObjectReference>("import", "./_content/DrBlazor/DrTooltip/tooltip.js");
 
             var reference = DotNetObjectReference.Create(this);
             await module.InvokeVoidAsync("observeMouse", reference, _ref);

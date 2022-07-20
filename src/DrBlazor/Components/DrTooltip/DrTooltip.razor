@@ -1,11 +1,12 @@
 ﻿@namespace DrBlazor
+@inherits DrComponentBase
 
 <Popover @bind-Open="_open"
          GetControl="@(() => _ref)"
          FlipToFit
          DisableArrow
          Direction="Direction.Top">
-    @TooltipContent
+    @DrTooltipContent
 </Popover>
 
 @*  https://github.com/dotnet/aspnetcore/pull/40829
