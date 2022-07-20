@@ -1,6 +1,7 @@
 ﻿@page "/"
 
 @using DrBlazor
+@using DrBlazor.TestWasmApp.Components
 
 <PageTitle>Index</PageTitle>
 
@@ -9,55 +10,74 @@
          Margin="10"
          FlipToFit
          DisableArrow
-         Direction="Direction.Top">
+         Direction="Direction.Bottom">
     <div style="max-width: 280px;">
         <h4>Basic dialog title</h4>
         <p>
             A dialog is a type of modal window that appears in front of app content
             to provide critical information or prompt for a decision to be made.
         </p>
-        <div>
-
-        </div>
+        <Tooltip>
+            <TooltipContent>
+                A nested tooltip inside the popover
+            </TooltipContent>
+            <ChildContent>
+                Hover it to show a tooltip
+            </ChildContent>
+        </Tooltip>
     </div>
 </Popover>
 
-<div>
-    <h1 >Hello, world!</h1>
+<div style="margin-top: 4rem;">
+    <Tooltip>
+        <TooltipContent>
+            This is a tooltip very nice!
+        </TooltipContent>
+        <ChildContent>
+            Hover it to show a tooltip
+        </ChildContent>
+    </Tooltip>
 </div>
 
-<Tooltip>
-    <TooltipContent>
-        This is a tooltip very nice!
-    </TooltipContent>
-    <ChildContent>
-        Welcome to your new app.
-    </ChildContent>
-</Tooltip>
-
-<DrIcon Icon="close">
-
-</DrIcon>
-
-<SurveyPrompt Title="How is Blazor working for you?" />
-
-<div style="display: flex; justify-content: start;">
-    <button @ref="_ref" @onclick="@(() => _open = !_open)">Click Me</button>
+<div style="display: flex; justify-content: start; margin: 4rem 0;">
+    <button @ref="_ref" @onclick="@(() => _open = !_open)">Open Popover</button>
 </div>
 
-<DrContainer Class="mt-10">
-    Eu sou um container
-</DrContainer>
+<div id="destination-one"></div>
+<div id="destination-two"></div>
 
-<div id="destination"></div>
+@* value is just and integer with value: 100 *@
+<CascadingValue Value="@value">
+    <DrTeleport To="@destination">
+        <MyComponent>
+            @* this component just get the cascading parameter and render it with a message *@
+        </MyComponent>
+    </DrTeleport>
+</CascadingValue>
 
-<DrTeleport To="#destination">
-    <h1>This will be rendered inside the destination</h1>
-</DrTeleport>
+<button @onclick="@ToggleDestination">
+    Changed teleport destination
+</button>
 
 @code {
+    public int value = 100;
+    string destination = "#destination-one";
+
     public ElementReference _ref;
     bool _open = false;
+
+    public async Task ToggleDestination()
+    {
+        if (destination.Equals("#destination-one"))
+        {
+            destination = "#destination-two";
+        }
+        else
+        {
+            destination = "#destination-one";
+        }
+        await InvokeAsync(StateHasChanged);
+    }
 }
 
 <style>
