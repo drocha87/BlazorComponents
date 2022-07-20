@@ -5,15 +5,9 @@
     @if (Dismissible)
     {
         <div class="dr-overlay" @onclick="@Close" style="@("display:" + (Open ? "block" : "none"))">
-            <div @ref="Ref" @attributes="_attributes">
-                @ChildContent
-            </div>
         </div>
     }
-    else
-    {
-        <div @ref="Ref" @attributes="_attributes">
-            @ChildContent
-        </div>
-    }
+    <div @ref="Ref" @attributes="_attributes">
+        @ChildContent
+    </div>
 </DrTeleport>
