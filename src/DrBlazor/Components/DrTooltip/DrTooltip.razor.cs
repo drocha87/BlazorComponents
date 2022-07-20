@@ -3,7 +3,7 @@ using Microsoft.JSInterop;
 
 namespace DrBlazor;
 
-public partial class DrTooltip : DrComponentBase
+public partial class DrTooltip : DrComponentBase, IAsyncDisposable
 {
     [Inject] IJSRuntime JS { get; set; } = null!;
 
@@ -39,5 +39,18 @@ public partial class DrTooltip : DrComponentBase
     {
         _open = false;
         await InvokeAsync(StateHasChanged);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        try
+        {
+            if (module is not null)
+            {
+                await module.DisposeAsync();
+            }
+        }
+        catch (JSDisconnectedException) { }
+        catch (TaskCanceledException) { }
     }
 }
