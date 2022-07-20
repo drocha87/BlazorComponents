@@ -97,12 +97,12 @@ public partial class Popover : DrComponentBase, IAsyncDisposable
     [JSInvokable]
     public async Task WindowResized() => await Redraw();
 
-    public void Close()
+    public async Task Close()
     {
         if (_open)
         {
             Open = _open = false;
-            OpenChanged.InvokeAsync(_open).ConfigureAwait(false);
+            await OpenChanged.InvokeAsync(_open);
         }
     }
 
@@ -114,6 +114,7 @@ public partial class Popover : DrComponentBase, IAsyncDisposable
             {
                 await module.DisposeAsync();
             }
+            await Close();
         }
         catch (JSDisconnectedException) { }
         catch (TaskCanceledException) { }
