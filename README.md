@@ -4,7 +4,7 @@ Drocha Blazor Components is a set of UI components and other useful extensions f
 
 ## About the project
 
-The main goal of this project is provide components to be used in my personal projects. You are free to fork it or to use it as it is. As I said this is a personal project, so don't expect me implementing features that you ask for or even fix issues that you may report.
+The main goal of this project is to provide components to be used in my personal projects and to tests new ideas. You are free to fork it or to use it as it is.
 
 ## Components
 
@@ -15,3 +15,26 @@ These are some of the components I expect to implement in the next couple months
 - [x] Teleport (like the teleport in vuejs)
 - [ ] Dialog
 - [ ] Mention Textarea
+
+## How to test it
+
+I provided two test projects `DrBlazor.TestServerApp`(not implemented yet) and `DrBlazor.TestWasmApp`. You can `cd` into these folders and run the command:
+
+```sh
+cd DrBlazor.TestWasmApp
+dotnet watch run
+```
+
+## How to use it
+
+Link `DrBlazor` as a reference to your project, and add the following line to the `head` tag of `wwwroot/index.html` in case of a wasm project.
+
+```html
+<link href="_content/DrBlazor/style.css" rel="stylesheet" />
+```
+
+and add the `DrBlazor` configuration as a singleton or scoped dependency.
+
+```csharp
+builder.Services.AddSingleton<DrConfig>();
+```
