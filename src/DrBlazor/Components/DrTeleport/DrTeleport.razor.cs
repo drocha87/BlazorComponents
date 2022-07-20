@@ -3,7 +3,7 @@ using Microsoft.JSInterop;
 
 namespace DrBlazor;
 
-public partial class DrTeleport : DrComponentBase
+public partial class DrTeleport : DrComponentBase, IAsyncDisposable
 {
     [Inject] IJSRuntime JS { get; set; } = null!;
 
@@ -24,5 +24,18 @@ public partial class DrTeleport : DrComponentBase
             await _module.InvokeVoidAsync("teleport", _ref, To);
         }
         await base.OnAfterRenderAsync(firstRender);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        try
+        {
+            if (_module is not null)
+            {
+                await _module.DisposeAsync();
+            }
+        }
+        catch (JSDisconnectedException) { }
+        catch (TaskCanceledException) { }
     }
 }
