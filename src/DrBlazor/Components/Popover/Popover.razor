@@ -2,13 +2,18 @@
 @inherits DrComponentBase
 
 <DrTeleport To="#app">
-    @* @if (Dismissible && Open)
+    @if (Dismissible)
     {
-        <div class="dr-overlay" @onclick="@Close">
+        <div class="dr-overlay" @onclick="@Close" style="@("display:" + (Open ? "block" : "none"))">
+            <div @ref="Ref" @attributes="_attributes">
+                @ChildContent
+            </div>
         </div>
-    } *@
-
-    <div @ref="Ref" @attributes="_attributes">
-        @ChildContent
-    </div>
+    }
+    else
+    {
+        <div @ref="Ref" @attributes="_attributes">
+            @ChildContent
+        </div>
+    }
 </DrTeleport>
