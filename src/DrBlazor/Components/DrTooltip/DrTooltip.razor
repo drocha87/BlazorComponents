@@ -5,8 +5,11 @@
          GetControl="@(() => _ref)"
          FlipToFit
          DisableArrow
-         Direction="Direction.Top">
-    @DrTooltipContent
+         Direction="Direction.Top"
+         Margin="8">
+    <div class="dr-tooltip secondary-container shape-small body-medium" style="padding: 8px 12px;">
+        @DrTooltipContent
+    </div>
 </Popover>
 
 @*  https://github.com/dotnet/aspnetcore/pull/40829
