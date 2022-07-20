@@ -1,14 +1,3 @@
 .dr-container {
-  border-radius: var(--dr-border-radius);
-  padding: var(--dr-padding);
-}
-
-.dr-container-light {
-  background-color: var(--dr-theme-light-primary-container);
-  color: var(--dr-theme-light-on-surface);
-}
-
-.dr-container-dark {
-  background-color: var(--dr-theme-dark-primary-container);
-  color: var(--dr-theme-dark-on-surface);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }

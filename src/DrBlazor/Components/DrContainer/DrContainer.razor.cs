@@ -8,10 +8,15 @@ public partial class DrContainer : DrComponentBase
 
     public Dictionary<string, object> Attributes =>
         new AttrBuilder()
+            // css classes
             .AddClass("dr-container")
-            .AddClass($"dr-container-{Config.Theme}")
+            .AddClass("shape-medium")
+            .AddClass("surface")
             .AddClasses(Class ?? "")
+            // styles
+            .AddStyle("padding", "24px")
             .AddStyles(Style ?? "")
+            // attributes
             .AddAttributes(UserAttributes)
             .Build();
 }
