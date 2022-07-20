@@ -6,15 +6,6 @@
   display: block;
 }
 
-.dismissable {
-  position: absolute;
-
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
 .dr-overlay {
   position: absolute;
 
@@ -31,12 +22,6 @@
 
 div[data-dr-popover-visible] {
   position: relative;
-
-  padding: 8px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 0.3rem;
-
-  background-color: white;
 }
 
 /* Arrow */
