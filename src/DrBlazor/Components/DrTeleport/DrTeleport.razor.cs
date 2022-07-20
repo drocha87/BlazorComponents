@@ -13,21 +13,31 @@ public partial class DrTeleport : DrComponentBase, IAsyncDisposable
     [Parameter] public RenderFragment ChildContent { get; set; } = null!;
 
     private ElementReference _ref;
+
     private string? _to;
+    private bool? _disabled;
+    private bool _mustUpdate = true;
 
     private IJSObjectReference? _module;
 
     protected override void OnInitialized()
     {
         _to = To;
+        _disabled = Disabled;
     }
 
-    protected override async Task OnParametersSetAsync()
+    protected override void OnParametersSet()
     {
-        if (!To.Equals(_to) && _module is not null)
+        // if `To` or `Disabled` has changed we must update the teleport
+        if (!To.Equals(_to) || !Disabled.Equals(_disabled))
         {
             _to = To;
-            await _module.InvokeVoidAsync("teleport", _ref, To);
+            _disabled = Disabled;
+            _mustUpdate = true;
+        }
+        else
+        {
+            _mustUpdate = false;
         }
     }
 
@@ -36,9 +46,21 @@ public partial class DrTeleport : DrComponentBase, IAsyncDisposable
         if (firstRender)
         {
             _module = await JS.InvokeAsync<IJSObjectReference>("import", "./_content/DrBlazor/DrTeleport/teleport.js");
-            await _module.InvokeVoidAsync("teleport", _ref, To);
+        }
+
+        if (_mustUpdate)
+        {
+            await Update();
         }
         await base.OnAfterRenderAsync(firstRender);
+    }
+
+    public async Task Update()
+    {
+        if (_module is not null && !Disabled)
+        {
+            await _module.InvokeVoidAsync("teleport", _ref, To);
+        }
     }
 
     public async ValueTask DisposeAsync()

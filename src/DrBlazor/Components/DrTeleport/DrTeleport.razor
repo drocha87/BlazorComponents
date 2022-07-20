@@ -1,6 +1,9 @@
 @namespace DrBlazor
 @inherits DrComponentBase
 
-<div @ref="_ref">
-    @ChildContent
-</div>
+@if (!Disabled)
+{
+    <div @ref="_ref">
+        @ChildContent
+    </div>
+}
