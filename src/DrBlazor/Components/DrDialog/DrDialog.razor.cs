@@ -12,18 +12,24 @@ public partial class DrDialog : DrComponentBase, IAsyncDisposable
     [Parameter] public bool Open { get; set; } = false;
     [Parameter] public EventCallback<bool> OpenChanged { get; set; }
 
-    [Parameter] public bool Dismissible { get; set; } = false;
+    [Parameter] public bool Dismissible { get; set; } = true;
 
     public ElementReference Ref { get; set; }
 
     private Dictionary<string, object> _attributes =>
         new AttrBuilder()
+        // material design classes
+        .AddClass("shape-medium")
+        .AddClass("surface")
+        .AddClass("elevation-3")
+        // styles
         .AddStyle("position", "absolute")
         .AddStyle("width", "fit-content")
         .AddStyle("padding", "24px")
-        .AddStyle("display", Open ? "block" : "none")
+        // data attributes
         .AddData("data-dr-dialog-id", Id)
         .AddData("data-dr-dialog-visible", Open)
+        .AddData("data-dr-dialog-theme", Config.Theme)
         .Build();
 
     private readonly string _id = Guid.NewGuid().ToString();

@@ -4,7 +4,7 @@
 <DrTeleport To="#app" Disabled="@(!Open)">
     @if (Dismissible)
     {
-        <div class="dr-overlay" @onclick="@Close" style="@("display:" + (Open ? "block" : "none"))">
+        <div class="dr-overlay black" @onclick="@Close" style="opacity: 32%;">
         </div>
     }
     <div @ref="Ref" @attributes="_attributes">
