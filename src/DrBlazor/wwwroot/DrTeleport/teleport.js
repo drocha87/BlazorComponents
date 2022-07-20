@@ -5,4 +5,8 @@ export function teleport(source, to) {
     }
     target.appendChild(source);
 }
+export function removeFromDOM(el) {
+    if (el && el.__internalId !== null)
+        el.remove();
+}
 //# sourceMappingURL=teleport.js.map

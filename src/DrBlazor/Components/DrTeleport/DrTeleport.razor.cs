@@ -69,6 +69,11 @@ public partial class DrTeleport : DrComponentBase, IAsyncDisposable
         {
             if (_module is not null)
             {
+                // FIXME: for some reason a tooltip inside a dialog keeps visible even if the
+                // dialog was closed. The only way to remove it from the DOM is using JSInterop
+                // since setting Disabled to true does not works. Probably there's a better way
+                // to handle it.
+                await _module.InvokeVoidAsync("removeFromDOM", _ref);
                 await _module.DisposeAsync();
             }
         }
