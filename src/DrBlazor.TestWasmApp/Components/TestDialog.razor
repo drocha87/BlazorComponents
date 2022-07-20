@@ -1,0 +1,58 @@
+@namespace DrBlazor
+@inherits DrComponentBase
+
+<DrDialog @bind-Open="_open" Dismissible>
+    <div>
+        <h4>
+            Dialog Title
+        </h4>
+
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto nam necessitatibus officiis
+            blanditiis odio ducimus voluptas dolor optio doloremque.
+        </p>
+
+        <Popover @bind-Open="_openPopover"
+                GetControl="@(() => _ref)"
+                Margin="10"
+                FlipToFit
+                DisableArrow
+                Direction="Direction.Top">
+            <DrContainer>
+                <div style="max-width: 280px;">
+                    <h4>Basic dialog title</h4>
+                    <p>
+                        A dialog is a type of modal window that appears in front of app content
+                        to provide critical information or prompt for a decision to be made.
+                    </p>
+                    <DrTooltip>
+                        <DrTooltipContent>
+                            A nested tooltip inside the popover
+                        </DrTooltipContent>
+                        <ChildContent>
+                            Hover it to show a tooltip
+                        </ChildContent>
+                    </DrTooltip>
+                </div>
+            </DrContainer>
+        </Popover>
+
+        <div>
+            <DrTooltip>
+                 <DrTooltipContent>
+                    This tooltip is to inform that this button is to close the dialog
+                </DrTooltipContent>
+                <ChildContent>
+                     <DrButtonText Text="Close Dialog" OnClick="@(() => _open = false)">
+                    </DrButtonText>
+                </ChildContent>
+            </DrTooltip>
+            <DrButtonText @bind-Ref="@_ref" Text="Open Popover" OnClick="@(() => _openPopover = !_openPopover)">
+            </DrButtonText>
+        </div>
+    </div>
+</DrDialog>
+
+<button @onclick="@(() => _open = true)">
+    Open Dialog
+</button>
