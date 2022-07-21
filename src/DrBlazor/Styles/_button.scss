@@ -1,0 +1,57 @@
+@use "core/theme" as *;
+
+@use "core/shape";
+@use "core/elevation";
+@use "core/typography";
+
+.dr-button-root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  outline: none;
+  border: none;
+}
+
+.dr-button-regular {
+  height:  36px;
+  padding: 12px 18px;
+}
+
+.dr-button-filled {
+  @include shape.shape-large;
+
+  background-color: $md-sys-color-primary;
+  color: $md-sys-color-on-primary;
+
+  &:disabled {
+    background-color: rgba($md-sys-color-surface, 12%);
+    color: rgba($md-sys-color-on-surface, 38%);
+  }
+
+  &:hover {
+    @include elevation.z-depth(3);
+    @include elevation.z-depth-transition();
+
+    background-color: $md-sys-color-primary;
+    color: $md-sys-color-on-primary;
+  }
+}
+
+.dr-button-text {
+  @include shape.shape-large;
+
+  background-color: transparent;
+  color: $md-sys-color-primary;
+
+  &:disabled {
+    background-color: rgba($md-sys-color-surface, 12%);
+    color: rgba($md-sys-color-on-surface, 38%);
+  }
+
+  &:hover {
+    // @include elevation.z-depth(3);
+    // @include elevation.z-depth-transition();
+    background-color: rgba($md-sys-color-primary, 12%);
+  }
+}

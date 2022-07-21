@@ -1,0 +1,109 @@
+//  Copyright 2016 Google Inc. All rights reserved.
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+
+// Fully rounded
+$md-sys-shape-corner-full-family: 3px;
+// Extra large top rounding
+$md-sys-shape-corner-extra-large-top-family: 1px;
+$md-sys-shape-corner-extra-large-top-default-size: 0px;
+$md-sys-shape-corner-extra-large-top-top-left: 28px;
+$md-sys-shape-corner-extra-large-top-top-right-unit: 1px;
+$md-sys-shape-corner-extra-large-top-top-right: 28px;
+// Extra large rounding
+$md-sys-shape-corner-extra-large-family: 1px;
+$md-sys-shape-corner-extra-large-default-size-unit: 1px;
+$md-sys-shape-corner-extra-large-default-size: 28px;
+// Large top rounding
+$md-sys-shape-corner-large-top-family: 1px;
+$md-sys-shape-corner-large-top-default-size-unit: 1px;
+$md-sys-shape-corner-large-top-default-size: 0px;
+$md-sys-shape-corner-large-top-top-left-unit: 1px;
+$md-sys-shape-corner-large-top-top-left: 16px;
+$md-sys-shape-corner-large-top-top-right-unit: 1px;
+$md-sys-shape-corner-large-top-top-right: 16px;
+// Large end rounding
+$md-sys-shape-corner-large-end-family: 1px;
+$md-sys-shape-corner-large-end-default-size-unit: 1px;
+$md-sys-shape-corner-large-end-default-size: 0px;
+$md-sys-shape-corner-large-end-top-right-unit: 1px;
+$md-sys-shape-corner-large-end-top-right: 16px;
+$md-sys-shape-corner-large-end-bottom-right-unit: 1px;
+$md-sys-shape-corner-large-end-bottom-right: 16px;
+// Large rounding
+$md-sys-shape-corner-large-family: 1px;
+$md-sys-shape-corner-large-default-size-unit: 1px;
+$md-sys-shape-corner-large-default-size: 16px;
+// Medium rounding
+$md-sys-shape-corner-medium-family: 1px;
+$md-sys-shape-corner-medium-default-size-unit: 1px;
+$md-sys-shape-corner-medium-default-size: 12px;
+// Small rounding
+$md-sys-shape-corner-small-family: 1px;
+$md-sys-shape-corner-small-default-size-unit: 1px;
+$md-sys-shape-corner-small-default-size: 8px;
+// Extra small top rounding
+$md-sys-shape-corner-extra-small-top-family: 1px;
+$md-sys-shape-corner-extra-small-top-default-size-unit: 1px;
+$md-sys-shape-corner-extra-small-top-default-size: 0px;
+$md-sys-shape-corner-extra-small-top-top-left-unit: 1px;
+$md-sys-shape-corner-extra-small-top-top-left: 4px;
+$md-sys-shape-corner-extra-small-top-top-right-unit: 1px;
+$md-sys-shape-corner-extra-small-top-top-right: 4px;
+// Extra small rounding
+$md-sys-shape-corner-extra-small-family: 1px;
+$md-sys-shape-corner-extra-small-default-size-unit: 1px;
+$md-sys-shape-corner-extra-small-default-size: 4px;
+// No rounding
+$md-sys-shape-corner-none-family: 1px;
+$md-sys-shape-corner-none-default-size-unit: 1px;
+$md-sys-shape-corner-none-default-size: 0px;
+
+$md-sys-shape-small: $md-sys-shape-corner-small-default-size;
+$md-sys-shape-medium: $md-sys-shape-corner-medium-default-size;
+$md-sys-shape-large: $md-sys-shape-corner-large-default-size;
+
+@mixin shape-none {
+  border-radius: $md-sys-shape-corner-none-default-size;
+}
+@mixin shape-extra-small {
+  border-radius: $md-sys-shape-corner-extra-small-default-size;
+}
+@mixin shape-small {
+  border-radius: $md-sys-shape-corner-small-default-size;
+}
+@mixin shape-medium {
+  border-radius: $md-sys-shape-corner-medium-default-size;
+}
+@mixin shape-large {
+  border-radius: $md-sys-shape-corner-large-default-size;
+}
+@mixin shape-extra-large {
+  border-radius: $md-sys-shape-corner-extra-large-default-size;
+}
+@mixin extra-small-top {
+  border-top-left-radius: $md-sys-shape-corner-extra-small-top-top-left;
+  border-top-right-radius: $md-sys-shape-corner-extra-small-top-top-right;
+}
+@mixin large-end {
+  border-top-right-radius: $md-sys-shape-corner-large-end-top-right;
+  border-bottom-right-radius: $md-sys-shape-corner-large-end-bottom-right;
+}
+@mixin large-top {
+  border-top-left-radius: $md-sys-shape-corner-large-top-top-left;
+  border-top-right-radius: $md-sys-shape-corner-large-top-top-right;
+}
+@mixin extra-large-top {
+  border-top-left-radius: $md-sys-shape-corner-extra-large-top-top-left;
+  border-top-right-radius: $md-sys-shape-corner-extra-large-top-top-right;
+}

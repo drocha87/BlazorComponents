@@ -1,0 +1,45 @@
+//  Copyright 2016 Google Inc. All rights reserved.
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+
+@use "palette" as *;
+
+$md-sys-color-on-error-container: $md-ref-palette-error10;
+$md-sys-color-on-error: $md-ref-palette-error100;
+$md-sys-color-error-container: $md-ref-palette-error90;
+$md-sys-color-on-tertiary-container: $md-ref-palette-tertiary10;
+$md-sys-color-on-tertiary: $md-ref-palette-tertiary100;
+$md-sys-color-tertiary-container: $md-ref-palette-tertiary90;
+$md-sys-color-tertiary: $md-ref-palette-tertiary40;
+$md-sys-color-shadow: $md-ref-palette-neutral0;
+$md-sys-color-error: $md-ref-palette-error40;
+$md-sys-color-outline: $md-ref-palette-neutral-variant50;
+$md-sys-color-on-background: $md-ref-palette-neutral10;
+$md-sys-color-background: $md-ref-palette-neutral99;
+$md-sys-color-inverse-on-surface: $md-ref-palette-neutral95;
+$md-sys-color-inverse-surface: $md-ref-palette-neutral20;
+$md-sys-color-on-surface-variant: $md-ref-palette-neutral-variant30;
+$md-sys-color-on-surface: $md-ref-palette-neutral10;
+$md-sys-color-surface-variant: $md-ref-palette-neutral-variant90;
+$md-sys-color-surface: $md-ref-palette-neutral99;
+$md-sys-color-on-secondary-container: $md-ref-palette-secondary10;
+$md-sys-color-on-secondary: $md-ref-palette-secondary100;
+$md-sys-color-secondary-container: $md-ref-palette-secondary90;
+$md-sys-color-secondary: $md-ref-palette-secondary40;
+$md-sys-color-inverse-primary: $md-ref-palette-primary80;
+$md-sys-color-on-primary-container: $md-ref-palette-primary10;
+$md-sys-color-on-primary: $md-ref-palette-primary100;
+$md-sys-color-primary-container: $md-ref-palette-primary90;
+$md-sys-color-primary: $md-ref-palette-primary40;
+$md-sys-color-surface-tint: $md-sys-color-primary;
+$md-sys-color-surface-tint-color: $md-sys-color-primary;
