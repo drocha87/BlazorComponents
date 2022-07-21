@@ -10,6 +10,8 @@ public partial class DrTeleport : DrComponentBase, IAsyncDisposable
     [Parameter] public string To { get; set; } = null!;
     [Parameter] public bool Disabled { get; set; } = false;
 
+    // [Parameter] public ElementReference Target { get; set; }
+
     [Parameter] public RenderFragment ChildContent { get; set; } = null!;
 
     private ElementReference _ref;
@@ -19,12 +21,6 @@ public partial class DrTeleport : DrComponentBase, IAsyncDisposable
     private bool _mustUpdate = true;
 
     private IJSObjectReference? _module;
-
-    protected override void OnInitialized()
-    {
-        _to = To;
-        _disabled = Disabled;
-    }
 
     protected override void OnParametersSet()
     {
