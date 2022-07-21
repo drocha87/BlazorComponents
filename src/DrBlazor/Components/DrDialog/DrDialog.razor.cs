@@ -19,17 +19,13 @@ public partial class DrDialog : DrComponentBase, IAsyncDisposable
     private Dictionary<string, object> _attributes =>
         new AttrBuilder()
         // material design classes
-        .AddClass("shape-medium")
-        .AddClass("surface")
-        .AddClass("elevation-3")
+        .AddClass("dr-dialog")
+
         // styles
-        .AddStyle("position", "absolute")
-        .AddStyle("width", "fit-content")
         .AddStyle("padding", "24px")
+
         // data attributes
         .AddData("data-dr-dialog-id", Id)
-        .AddData("data-dr-dialog-visible", Open)
-        .AddData("data-dr-dialog-theme", Config.Theme)
         .Build();
 
     private readonly string _id = Guid.NewGuid().ToString();

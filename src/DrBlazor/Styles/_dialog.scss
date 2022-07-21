@@ -1,0 +1,34 @@
+@use "core/theme" as *;
+
+@use "core/elevation";
+@use "core/shape";
+
+.dr-dialog {
+  @include shape.shape-medium;
+  @include elevation.z-depth(3);
+
+  position: absolute;
+  width: fit-content;
+
+  color: $md-sys-color-on-surface;
+  background-color: $md-sys-color-surface;
+}
+
+.dr-overlay {
+  position: absolute;
+  display: block;
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  pointer-events: all;
+
+  background-color: rgba(black, 32%);
+}
+
+div[data-dr-dialog-visible] {
+  position: relative;
+  padding: 8px;
+}
