@@ -9,6 +9,7 @@ public abstract class DrComponentBase : ComponentBase, IDisposable
     [Parameter] public ElementReference Ref { get; set; }
     [Parameter] public EventCallback<ElementReference> RefChanged { get; set; }
 
+    [Parameter] public string? Id { get; set; }
 
     [Parameter] public string? Style { get; set; }
     [Parameter] public string? Class { get; set; }
