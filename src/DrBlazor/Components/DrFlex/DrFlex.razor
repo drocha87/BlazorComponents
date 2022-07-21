@@ -1,6 +1,8 @@
 @namespace DrBlazor
 @inherits DrComponentBase
 
-<div @attributes="_attributes">
-    @ChildContent
-</div>
+<CascadingValue Value="@Column">
+    <div @attributes="_attributes">
+        @ChildContent
+    </div>
+</CascadingValue>
