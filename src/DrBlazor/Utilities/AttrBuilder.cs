@@ -29,7 +29,7 @@ public class AttrBuilder
         return this;
     }
 
-    public AttrBuilder AddClasses(string classes)
+    public AttrBuilder AddClasses(string? classes)
     {
         if (classes is not null)
         {
@@ -68,11 +68,23 @@ public class AttrBuilder
         return this;
     }
 
+    public AttrBuilder AddStyle(string property, string value, bool when)
+    {
+        if (when)
+        {
+            return AddStyle(property, value);
+        }
+        return this;
+    }
+
     public AttrBuilder AddData(string key, string? value)
     {
         _attributes.Add(key, value ?? "");
         return this;
     }
+
+    public AttrBuilder AddData(string key, string? value, bool when)
+        => when ? AddData(key, value) : this;
 
     public AttrBuilder AddData(string key, bool value)
     {
