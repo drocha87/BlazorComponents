@@ -3,16 +3,16 @@
 
 <DrDialog @bind-Open="_open" Dismissible>
     <div>
-        <h4>
+        <h4 class="headline-medium" style="margin-bottom: 24px;">
             Dialog Title
         </h4>
 
-        <p>
+        <p class="body-large">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto nam necessitatibus officiis
             blanditiis odio ducimus voluptas dolor optio doloremque.
         </p>
 
-        <Popover @bind-Open="_openPopover"
+        <DrPopover @bind-Open="_openPopover"
                 GetControl="@(() => _ref)"
                 Margin="10"
                 FlipToFit
@@ -35,7 +35,7 @@
                     </DrTooltip>
                 </div>
             </DrContainer>
-        </Popover>
+        </DrPopover>
 
         <div>
             <DrTooltip>

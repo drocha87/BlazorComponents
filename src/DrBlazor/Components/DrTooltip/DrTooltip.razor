@@ -1,7 +1,7 @@
 ﻿@namespace DrBlazor
 @inherits DrComponentBase
 
-<Popover @bind-Open="_open"
+<DrPopover @bind-Open="_open"
          GetControl="@(() => _ref)"
          FlipToFit
          DisableArrow
@@ -10,7 +10,7 @@
     <div class="dr-tooltip secondary-container shape-small body-medium" style="padding: 8px 12px;">
         @DrTooltipContent
     </div>
-</Popover>
+</DrPopover>
 
 @*  https://github.com/dotnet/aspnetcore/pull/40829
     FIXME: remove this piece of code when Blazor implements `onmouseenter` and `onmouseleave`

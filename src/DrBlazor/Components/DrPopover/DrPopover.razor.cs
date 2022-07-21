@@ -11,7 +11,7 @@ public enum Direction
     Bottom,
 }
 
-public partial class Popover : DrComponentBase, IAsyncDisposable
+public partial class DrPopover : DrComponentBase, IAsyncDisposable
 {
     [Inject] IJSRuntime JS { get; set; } = null!;
 
@@ -70,7 +70,7 @@ public partial class Popover : DrComponentBase, IAsyncDisposable
 
         if (firstRender)
         {
-            module = await JS.InvokeAsync<IJSObjectReference>("import", "./_content/DrBlazor/Popover/popover.js");
+            module = await JS.InvokeAsync<IJSObjectReference>("import", "./_content/DrBlazor/DrPopover/popover.js");
 
             var reference = DotNetObjectReference.Create(this);
             await module.InvokeVoidAsync("initializeWindowResizeObserver", reference);
