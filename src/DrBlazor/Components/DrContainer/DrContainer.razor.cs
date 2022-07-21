@@ -11,9 +11,6 @@ public partial class DrContainer : DrComponentBase
         new AttrBuilder()
             // css classes
             .AddClass("dr-container")
-            .AddClass("shape-medium")
-            .AddClass("primary-container")
-            .AddClass($"dr-elevation-{ElevationLevel}")
             .AddClasses(Class ?? "")
             // styles
             .AddStyle("padding", "24px")
