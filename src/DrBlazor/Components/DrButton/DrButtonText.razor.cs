@@ -10,6 +10,7 @@ public partial class DrButtonText : DrComponentBase
     private Dictionary<string, object> _attributes =>
         new AttrBuilder()
         .AddClass("label-large")
+        .AddClasses(Class)
         .AddStyle("color", "var(--md-sys-color-primary)")
         .Build();
 
