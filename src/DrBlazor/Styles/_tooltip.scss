@@ -2,3 +2,12 @@
 
 @use "core/elevation";
 @use "core/shape";
+
+.dr-tooltip {
+  @include shape.shape-small;
+  @include elevation.z-depth(3);
+
+  color: $md-sys-color-on-secondary-container;
+  background-color: $md-sys-color-secondary-container;
+  padding: 8px 12px;
+}
