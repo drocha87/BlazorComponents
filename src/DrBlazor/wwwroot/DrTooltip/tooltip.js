@@ -8,7 +8,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 export function observeMouse(dotnetRef, el) {
-    el.addEventListener("mouseenter", () => __awaiter(this, void 0, void 0, function* () { return yield dotnetRef.invokeMethodAsync("MouseEnter"); }));
-    el.addEventListener("mouseleave", () => __awaiter(this, void 0, void 0, function* () { return yield dotnetRef.invokeMethodAsync("MouseLeave"); }));
+    if (el) {
+        el.addEventListener("mouseenter", () => __awaiter(this, void 0, void 0, function* () { return yield dotnetRef.invokeMethodAsync("MouseEnter"); }));
+        el.addEventListener("mouseleave", () => __awaiter(this, void 0, void 0, function* () { return yield dotnetRef.invokeMethodAsync("MouseLeave"); }));
+    }
 }
 //# sourceMappingURL=tooltip.js.map
