@@ -55,17 +55,6 @@
   background-color: #fffbfe;
 }
 
-.dr-overlay {
-  position: absolute;
-  display: block;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  pointer-events: all;
-  background-color: rgba(0, 0, 0, 0.32);
-}
-
 div[data-dr-dialog-visible] {
   position: relative;
   padding: 8px;
@@ -254,6 +243,17 @@ div[data-dr-dialog-visible] {
   color: #1d192b;
   background-color: #e8def8;
   padding: 8px 12px;
+}
+
+.dr-overlay {
+  position: absolute;
+  display: block;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: all;
+  background-color: rgba(0, 0, 0, 0.32);
 }
 
 /*# sourceMappingURL=styles.css.map */

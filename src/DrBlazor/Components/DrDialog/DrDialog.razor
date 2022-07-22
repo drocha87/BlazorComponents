@@ -4,8 +4,7 @@
 <DrTeleport To="DrModals" Disabled="@(!_open)">
     @if (Dismissible)
     {
-        <div class="dr-overlay" @onclick="CloseAsync">
-        </div>
+        <DrOverlay OnClose="CloseAsync"></DrOverlay>
     }
     <div @ref="_ref" @attributes="_attributes">
         @ChildContent
