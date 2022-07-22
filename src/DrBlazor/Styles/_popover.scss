@@ -1,0 +1,73 @@
+@use "core/theme" as *;
+
+@use "core/elevation";
+@use "core/shape";
+
+// /* Arrow */
+// div[data-dr-popover-visible][data-dr-popover-arrow]::after,
+// div[data-dr-popover-visible][data-dr-popover-arrow]::before {
+//   content: "";
+//   position: absolute;
+
+//   width: 0;
+//   height: 0;
+
+//   border-color: transparent;
+//   border-style: solid;
+// }
+
+// div[data-dr-popover-visible][data-dr-popover-placement="top"]::before,
+// div[data-dr-popover-visible][data-dr-popover-placement="top"]::after {
+//   border-width: 5px 5px 0 5px;
+//   border-top-color: rgba(0, 0, 0, 0.2);
+//   bottom: -6px;
+//   left: 50%;
+//   transform: translateX(-50%);
+// }
+
+// div[data-dr-popover-visible][data-dr-popover-placement="top"]::after {
+//   border-top-color: white;
+//   bottom: -5px;
+// }
+
+// div[data-dr-popover-visible][data-dr-popover-placement="bottom"]::before,
+// div[data-dr-popover-visible][data-dr-popover-placement="bottom"]::after {
+//   border-width: 0 5px 5px 5px;
+//   border-bottom-color: rgba(0, 0, 0, 0.2);
+//   top: -6px;
+//   left: 50%;
+//   transform: translateX(-50%);
+// }
+
+// div[data-dr-popover-visible][data-dr-popover-placement="bottom"]::after {
+//   border-bottom-color: white;
+//   top: -5px;
+// }
+
+// div[data-dr-popover-visible][data-dr-popover-placement="left"]::before,
+// div[data-dr-popover-visible][data-dr-popover-placement="left"]::after {
+//   border-width: 5px 0 5px 5px;
+//   border-left-color: rgba(0, 0, 0, 0.2);
+//   right: -6px;
+//   top: 50%;
+//   transform: translateY(-50%);
+// }
+
+// div[data-dr-popover-visible][data-dr-popover-placement="left"]::after {
+//   border-left-color: white;
+//   right: -5px;
+// }
+
+// div[data-dr-popover-visible][data-dr-popover-placement="right"]::before,
+// div[data-dr-popover-visible][data-dr-popover-placement="right"]::after {
+//   border-width: 5px 5px 5px 0;
+//   border-right-color: rgba(0, 0, 0, 0.2);
+//   left: -6px;
+//   top: 50%;
+//   transform: translateY(-50%);
+// }
+
+// div[data-dr-popover-visible][data-dr-popover-placement="right"]::after {
+//   border-right-color: white;
+//   left: -5px;
+// }

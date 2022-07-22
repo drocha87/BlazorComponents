@@ -72,6 +72,17 @@ div[data-dr-dialog-visible] {
   background-color: rgba(50, 47, 55, 0.32);
 }
 
+.dr-overlay {
+  position: absolute;
+  display: block;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: all;
+  background-color: rgba(0, 0, 0, 0.32);
+}
+
 .dr-text-label-small {
   font-family: Roboto;
   font-weight: 500;
@@ -243,17 +254,6 @@ div[data-dr-dialog-visible] {
   color: #1d192b;
   background-color: #e8def8;
   padding: 8px 12px;
-}
-
-.dr-overlay {
-  position: absolute;
-  display: block;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  pointer-events: all;
-  background-color: rgba(0, 0, 0, 0.32);
 }
 
 /*# sourceMappingURL=styles.css.map */
