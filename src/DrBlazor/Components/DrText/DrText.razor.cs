@@ -44,7 +44,8 @@ public partial class DrText : DrComponentBase
 
     private Dictionary<string, object> Attributes =>
         new AttrBuilder()
-            .AddClass($"{Typo.ToDescriptionString()}-{Size.ToDescriptionString()}")
+            .AddClass($"dr-text-{Typo.ToDescriptionString()}-{Size.ToDescriptionString()}")
             .AddStyle("margin-bottom", "24px", GutterBottom)
+
             .Build();
 }

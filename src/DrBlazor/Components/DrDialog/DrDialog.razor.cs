@@ -8,13 +8,9 @@ public partial class DrDialog : DrComponentBase, IAsyncDisposable
     [Inject] IJSRuntime JS { get; set; } = null!;
 
     [Parameter] public RenderFragment ChildContent { get; set; } = default!;
-
-    [Parameter] public bool Open { get; set; } = false;
-    [Parameter] public EventCallback<bool> OpenChanged { get; set; }
-
     [Parameter] public bool Dismissible { get; set; } = true;
 
-    public ElementReference Ref { get; set; }
+    private ElementReference _ref;
 
     private Dictionary<string, object> _attributes =>
         new AttrBuilder()
@@ -28,24 +24,8 @@ public partial class DrDialog : DrComponentBase, IAsyncDisposable
         .AddData("data-dr-dialog-id", Id)
         .Build();
 
-    private readonly string _id = Guid.NewGuid().ToString();
-    public string Id => _id;
-
     private bool _open;
-
-    protected override async Task OnInitializedAsync()
-    {
-        _open = Open;
-        await base.OnInitializedAsync();
-    }
-
-    protected override void OnParametersSet()
-    {
-        if (_open != Open)
-        {
-            _open = Open;
-        }
-    }
+    public bool IsVisible => _open;
 
     IJSObjectReference? module;
 
@@ -64,23 +44,26 @@ public partial class DrDialog : DrComponentBase, IAsyncDisposable
 
     public async Task Redraw()
     {
-        if (Open)
+        if (_open)
         {
-            await module!.InvokeVoidAsync("updatePosition", Ref).ConfigureAwait(false);
+            await module!.InvokeVoidAsync("updatePosition", _ref).ConfigureAwait(false);
         }
+    }
+
+    public async Task CloseAsync()
+    {
+        _open = false;
+        await InvokeAsync(StateHasChanged);
+    }
+
+    public async Task ShowAsync()
+    {
+        _open = true;
+        await InvokeAsync(StateHasChanged);
     }
 
     [JSInvokable]
     public async Task WindowResized() => await Redraw();
-
-    public void Close()
-    {
-        if (_open)
-        {
-            Open = _open = false;
-            OpenChanged.InvokeAsync(_open).ConfigureAwait(false);
-        }
-    }
 
     public async ValueTask DisposeAsync()
     {
@@ -93,5 +76,6 @@ public partial class DrDialog : DrComponentBase, IAsyncDisposable
         }
         catch (JSDisconnectedException) { }
         catch (TaskCanceledException) { }
+        GC.SuppressFinalize(this);
     }
 }

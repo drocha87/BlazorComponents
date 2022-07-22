@@ -9,6 +9,7 @@ public partial class DrFlex : DrComponentBase
     [Parameter] public bool Reverse { get; set; } = false;
     [Parameter] public string Gap { get; set; } = "2px";
     [Parameter] public string AlignItems { get; set; } = "start";
+    [Parameter] public string JustifyContent { get; set; } = "start";
 
     private Dictionary<string, object> _attributes =>
         new AttrBuilder()
@@ -17,5 +18,6 @@ public partial class DrFlex : DrComponentBase
                 !Column ? (Reverse ? "row-reverse" : "row") : (Reverse ? "column-reverse" : "column"))
             .AddStyle("gap", Gap)
             .AddStyle("align-items", AlignItems)
+            .AddStyle("justify-content", JustifyContent)
             .Build();
 }

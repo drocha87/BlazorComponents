@@ -9,7 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 export function observeMouse(dotnetRef, el) {
     if (el) {
-        el.addEventListener("mouseenter", () => __awaiter(this, void 0, void 0, function* () { return yield dotnetRef.invokeMethodAsync("MouseEnter"); }));
+        el.addEventListener("mouseenter", () => __awaiter(this, void 0, void 0, function* () {
+            yield dotnetRef.invokeMethodAsync("MouseEnter", el.getBoundingClientRect());
+        }));
         el.addEventListener("mouseleave", () => __awaiter(this, void 0, void 0, function* () { return yield dotnetRef.invokeMethodAsync("MouseLeave"); }));
     }
 }

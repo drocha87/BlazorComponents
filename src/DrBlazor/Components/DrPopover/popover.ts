@@ -18,17 +18,18 @@ enum Direction {
 }
 
 function canPlaceOnTop(
-  sourceRect: DOMRect,
+  elRect: DOMRect,
   targetRect: DOMRect,
-  margin: number
+  margin: number,
+  target: HTMLElement,
 ): Position {
   const position: Position = { top: 0, left: 0, needFlip: false };
 
-  const { height, width } = sourceRect;
+  const { height, width } = elRect;
   const { top, left, width: tWidth } = targetRect;
 
   position.top = top - height - margin;
-  position.left = Math.abs(left - ((width - tWidth) / 2));
+  position.left = Math.abs(left - (width - tWidth) / 2);
 
   if (position.top < 0) {
     position.needFlip = true;
@@ -91,7 +92,7 @@ function canPlaceOnBottom(
   const { bottom, left, width: tWidth } = targetRect;
 
   position.top = bottom + margin;
-  position.left = Math.abs(left - ((width - tWidth) / 2));
+  position.left = Math.abs(left - (width - tWidth) / 2);
 
   if (position.top + height > innerHeight) {
     position.needFlip = true;
@@ -100,13 +101,13 @@ function canPlaceOnBottom(
 }
 
 export function updatePosition(
-  source: HTMLElement,
+  el: HTMLElement,
   target: HTMLElement,
   direction: Direction,
   flipToFit: boolean,
   margin: number
 ) {
-  const sourceRect = source.getBoundingClientRect();
+  const elRect = el.getBoundingClientRect();
   const targetRect = target.getBoundingClientRect();
 
   let top = 0;
@@ -117,9 +118,9 @@ export function updatePosition(
   switch (direction) {
     case Direction.Top:
       {
-        let position = canPlaceOnTop(sourceRect, targetRect, margin);
+        let position = canPlaceOnTop(elRect, targetRect, margin, target);
         if (position.needFlip) {
-          let attemptBottom = canPlaceOnBottom(sourceRect, targetRect, margin);
+          let attemptBottom = canPlaceOnBottom(elRect, targetRect, margin);
           if (!attemptBottom.needFlip) {
             position = attemptBottom;
             placement = "bottom";
@@ -132,11 +133,11 @@ export function updatePosition(
 
     case Direction.Right:
       {
-        let position = canPlaceOnRight(sourceRect, targetRect, margin);
+        let position = canPlaceOnRight(elRect, targetRect, margin);
         placement = "right";
 
         if (position.needFlip && flipToFit) {
-          let attemptLeft = canPlaceOnLeft(sourceRect, targetRect, margin);
+          let attemptLeft = canPlaceOnLeft(elRect, targetRect, margin);
           if (!attemptLeft.needFlip) {
             // if left has enough space put it there
             position = attemptLeft;
@@ -152,11 +153,11 @@ export function updatePosition(
 
     case Direction.Left:
       {
-        let position = canPlaceOnLeft(sourceRect, targetRect, margin);
+        let position = canPlaceOnLeft(elRect, targetRect, margin);
         placement = "left";
 
         if (position.needFlip && flipToFit) {
-          let attemptRight = canPlaceOnRight(sourceRect, targetRect, margin);
+          let attemptRight = canPlaceOnRight(elRect, targetRect, margin);
           if (!attemptRight.needFlip) {
             // if left has enough space put it there
             position = attemptRight;
@@ -172,11 +173,11 @@ export function updatePosition(
 
     case Direction.Bottom:
       {
-        let position = canPlaceOnBottom(sourceRect, targetRect, margin);
+        let position = canPlaceOnBottom(elRect, targetRect, margin);
         placement = "bottom";
 
         if (position.needFlip) {
-          let attemptTop = canPlaceOnTop(sourceRect, targetRect, margin);
+          let attemptTop = canPlaceOnTop(elRect, targetRect, margin, target);
           if (!attemptTop.needFlip) {
             position = attemptTop;
             placement = "top";
@@ -191,8 +192,8 @@ export function updatePosition(
       throw new Error("unknown popover direction");
   }
 
-  source.style.top = `${top}px`;
-  source.style.left = `${left}px`;
+  el.style.top = `${top}px`;
+  el.style.left = `${left}px`;
 
-  source.setAttribute("data-dr-popover-placement", placement);
+  el.setAttribute("data-dr-popover-placement", placement);
 }

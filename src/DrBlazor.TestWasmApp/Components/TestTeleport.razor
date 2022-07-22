@@ -10,16 +10,18 @@
 
 <DrFlex Gap="2rem" AlignItems="stretch">
     <DrFlexItem Grow="1f" AlignSelf="stretch">
-        <DrContainer Id="containerOne">
+        <DrContainer>
             <DrText Typo="@TypoStyle.Headline" Size="@TypoSize.Small">
                 A:
+                <DrTeleportSpot Name="containerOne"></DrTeleportSpot>
             </DrText>
         </DrContainer>
     </DrFlexItem>
     <DrFlexItem Grow="1f" AlignSelf="stretch">
-        <DrContainer Id="containerTwo">
+        <DrContainer>
             <DrText Typo="@TypoStyle.Headline" Size="@TypoSize.Small">
                 B:
+                <DrTeleportSpot Name="containerTwo"></DrTeleportSpot>
             </DrText>
         </DrContainer>
     </DrFlexItem>
@@ -35,17 +37,17 @@
 </DrButtonText>
 
 @code {
-    string destination = "#containerOne";
+    string destination = "containerOne";
 
     public async Task ToggleDestination()
     {
-        if (destination.Equals("#containerOne"))
+        if (destination.Equals("containerOne"))
         {
-            destination = "#containerTwo";
+            destination = "containerTwo";
         }
         else
         {
-            destination = "#containerOne";
+            destination = "containerOne";
         }
         await InvokeAsync(StateHasChanged);
     }

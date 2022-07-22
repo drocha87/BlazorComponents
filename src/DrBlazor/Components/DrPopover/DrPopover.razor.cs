@@ -15,11 +15,7 @@ public partial class DrPopover : DrComponentBase, IAsyncDisposable
 {
     [Inject] IJSRuntime JS { get; set; } = null!;
 
-    [Parameter] public Func<ElementReference>? GetControl { get; set; }
     [Parameter] public RenderFragment ChildContent { get; set; } = default!;
-
-    [Parameter] public bool Open { get; set; } = false;
-    [Parameter] public EventCallback<bool> OpenChanged { get; set; }
 
     [Parameter] public bool Dismissible { get; set; } = false;
     [Parameter] public bool DisableArrow { get; set; } = false;
@@ -28,46 +24,26 @@ public partial class DrPopover : DrComponentBase, IAsyncDisposable
     [Parameter] public Direction Direction { get; set; } = Direction.Top;
     [Parameter] public int Margin { get; set; } = 2;
 
-    public ElementReference Ref { get; set; }
 
-    private Dictionary<string, object> _attributes =>
+    private Dictionary<string, object> Attributes =>
         new AttrBuilder()
         .AddStyle("position", "absolute")
         .AddStyle("width", "fit-content")
-        .AddStyle("display", Open ? "block" : "none")
-        .AddData("data-dr-popover-id", Id)
-        .AddData("data-dr-popover-visible", Open)
+
         .AddData("data-dr-popover-arrow", !DisableArrow)
         .Build();
 
-    private readonly string _id = Guid.NewGuid().ToString();
-    public string Id => _id;
+    private ElementReference _ref;
+    private ElementReference _target;
 
-    private bool _open;
+    private bool _open = false;
 
-    protected override async Task OnInitializedAsync()
-    {
-        _open = Open;
-        await base.OnInitializedAsync();
-    }
-
-    protected override void OnParametersSet()
-    {
-        if (_open != Open)
-        {
-            _open = Open;
-        }
-    }
+    public bool IsVisible => _open;
 
     IJSObjectReference? module;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (GetControl is null)
-        {
-            throw new NullReferenceException(nameof(GetControl));
-        }
-
         if (firstRender)
         {
             module = await JS.InvokeAsync<IJSObjectReference>("import", "./_content/DrBlazor/DrPopover/popover.js");
@@ -81,29 +57,36 @@ public partial class DrPopover : DrComponentBase, IAsyncDisposable
 
     public async Task Redraw()
     {
-        if (Open)
+        if (_open)
         {
-            await module!.InvokeVoidAsync(
-                "updatePosition",
-                Ref,
-                GetControl!(),
-                Direction,
-                FlipToFit,
-                Margin)
-                .ConfigureAwait(false);
+            try
+            {
+                await module!.InvokeVoidAsync(
+                    "updatePosition",
+                    _ref,
+                    _target,
+                    Direction,
+                    FlipToFit,
+                    Margin);
+            }
+            catch (JSException) { }
         }
     }
 
     [JSInvokable]
     public async Task WindowResized() => await Redraw();
 
-    public async Task Close()
+    public async Task CloseAsync()
     {
-        if (_open)
-        {
-            Open = _open = false;
-            await OpenChanged.InvokeAsync(_open);
-        }
+        _open = false;
+        await InvokeAsync(StateHasChanged);
+    }
+
+    public async Task ShowAsync(ElementReference target)
+    {
+        _open = true;
+        _target = target;
+        await InvokeAsync(StateHasChanged);
     }
 
     public async ValueTask DisposeAsync()
@@ -114,9 +97,11 @@ public partial class DrPopover : DrComponentBase, IAsyncDisposable
             {
                 await module.DisposeAsync();
             }
-            await Close();
+            await CloseAsync();
         }
         catch (JSDisconnectedException) { }
         catch (TaskCanceledException) { }
+
+        GC.SuppressFinalize(this);
     }
 }

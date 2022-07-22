@@ -3,6 +3,18 @@ using Microsoft.JSInterop;
 
 namespace DrBlazor;
 
+public struct DOMRect
+{
+    public double Bottom { get; set; }
+    public double Height { get; set; }
+    public double Left { get; set; }
+    public double Right { get; set; }
+    public double Top { get; set; }
+    public double Width { get; set; }
+    public double X { get; set; }
+    public double Y { get; set; }
+}
+
 public partial class DrTooltip : DrComponentBase, IAsyncDisposable
 {
     [Inject] IJSRuntime JS { get; set; } = null!;
@@ -10,8 +22,8 @@ public partial class DrTooltip : DrComponentBase, IAsyncDisposable
     [Parameter] public RenderFragment ChildContent { get; set; } = null!;
     [Parameter] public RenderFragment DrTooltipContent { get; set; } = null!;
 
+    private DrPopover? _popover;
     private ElementReference _ref;
-    private bool _open = false;
 
     IJSObjectReference? module;
 
@@ -28,17 +40,21 @@ public partial class DrTooltip : DrComponentBase, IAsyncDisposable
     }
 
     [JSInvokable]
-    public async Task MouseEnter()
+    public async Task MouseEnter(DOMRect rect)
     {
-        _open = true;
-        await InvokeAsync(StateHasChanged);
+        if (_popover is not null)
+        {
+            await _popover.ShowAsync(_ref);
+        }
     }
 
     [JSInvokable]
     public async Task MouseLeave()
     {
-        _open = false;
-        await InvokeAsync(StateHasChanged);
+        if (_popover is not null)
+        {
+            await _popover.CloseAsync();
+        }
     }
 
     public async ValueTask DisposeAsync()

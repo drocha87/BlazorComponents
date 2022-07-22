@@ -1,23 +1,28 @@
 @namespace DrBlazor
 @inherits DrComponentBase
 
-<DrDialog @bind-Open="_open" Dismissible>
-    <div>
-        <h4 class="headline-medium" style="margin-bottom: 24px;">
-            Dialog Title
-        </h4>
+<DrDialog @ref="_dialog" Dismissible>
+    <h4 class="headline-medium" style="margin-bottom: 24px;">
+        Dialog Title
+    </h4>
 
-        <p class="body-large">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto nam necessitatibus officiis
-            blanditiis odio ducimus voluptas dolor optio doloremque.
-        </p>
+    <p class="body-large">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto nam necessitatibus officiis
+        blanditiis odio ducimus voluptas dolor optio doloremque.
+    </p>
 
-        <DrPopover @bind-Open="_openPopover"
-                GetControl="@(() => _ref)"
-                Margin="10"
-                FlipToFit
-                DisableArrow
-                Direction="Direction.Top">
+    <DrFlex JustifyContent="space-between">
+        <DrTooltip>
+            <DrTooltipContent>
+                This tooltip is to inform that this button is to close the dialog
+            </DrTooltipContent>
+            <ChildContent>
+                <DrButtonText Text="Close Dialog" OnClick="ToggleDialog">
+                </DrButtonText>
+            </ChildContent>
+        </DrTooltip>
+
+        <DrPopover @ref="_popover" Margin="10" FlipToFit DisableArrow Direction="Direction.Top">
             <DrContainer>
                 <div style="max-width: 280px;">
                     <h4>Basic dialog title</h4>
@@ -37,22 +42,11 @@
             </DrContainer>
         </DrPopover>
 
-        <div>
-            <DrTooltip>
-                 <DrTooltipContent>
-                    This tooltip is to inform that this button is to close the dialog
-                </DrTooltipContent>
-                <ChildContent>
-                     <DrButtonText Text="Close Dialog" OnClick="@(() => _open = false)">
-                    </DrButtonText>
-                </ChildContent>
-            </DrTooltip>
-            <DrButtonText @bind-Ref="@_ref" Text="Open Popover" OnClick="@(() => _openPopover = !_openPopover)">
-            </DrButtonText>
-        </div>
-    </div>
+        <DrButtonText @ref="_button" Text="Open Popover" OnClick="TogglePopover">
+        </DrButtonText>
+    </DrFlex>
 </DrDialog>
 
-<DrButton OnClick="@(() => _open = true)">
+<DrButton OnClick="ToggleDialog">
     Open Dialog
 </DrButton>

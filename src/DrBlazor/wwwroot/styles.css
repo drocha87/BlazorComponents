@@ -71,6 +71,18 @@ div[data-dr-dialog-visible] {
   padding: 8px;
 }
 
+.dr-divider-horizontal {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(50, 47, 55, 0.32);
+}
+
+.dr-divider-vertical {
+  width: 1px;
+  height: 100%;
+  background-color: rgba(50, 47, 55, 0.32);
+}
+
 .dr-text-label-small {
   font-family: Roboto;
   font-weight: 500;

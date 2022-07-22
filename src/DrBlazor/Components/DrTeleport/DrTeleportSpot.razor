@@ -1,0 +1,11 @@
+@namespace DrBlazor
+@inherits DrComponentBase
+
+
+@if (_fragments is not null)
+{
+    foreach (var fragment in _fragments)
+    {
+        @fragment
+    }
+}

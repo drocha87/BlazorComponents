@@ -1,13 +1,13 @@
 @namespace DrBlazor
 @inherits DrComponentBase
 
-<DrTeleport To="#app" Disabled="@(!Open)">
+<DrTeleport To="DrModals" Disabled="@(!_open)">
     @if (Dismissible)
     {
-        <div class="dr-overlay" @onclick="@Close">
+        <div class="dr-overlay" @onclick="CloseAsync">
         </div>
     }
-    <div @ref="Ref" @attributes="_attributes">
+    <div @ref="_ref" @attributes="_attributes">
         @ChildContent
     </div>
 </DrTeleport>
