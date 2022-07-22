@@ -1,12 +1,13 @@
+using Microsoft.AspNetCore.Components;
+
 namespace DrBlazor;
 
 public partial class DrDivider : DrComponentBase
 {
+    [Parameter] public bool Vertical { get; set; } = false;
     private Dictionary<string, object> Attributes =>
         new AttrBuilder()
-            .AddStyle("width", "100%")
-            .AddStyle("height", "1px")
-            .AddStyle("background-color", "var(--md-ref-palette-neutral-variant20)")
-            .AddStyle("opacity", "32%")
+            .AddClass("dr-divider-horizontal", !Vertical)
+            .AddClass("dr-divider-vertical", Vertical)
             .Build();
 }

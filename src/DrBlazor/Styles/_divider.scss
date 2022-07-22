@@ -1,0 +1,14 @@
+@use "core/theme" as *;
+@use "core/palette" as *;
+
+.dr-divider-horizontal {
+    width: 100%;
+    height: 1px;
+    background-color: rgba($md-ref-palette-neutral-variant20, 32%);
+}
+
+.dr-divider-vertical {
+    width: 1px;
+    height: 100%;
+    background-color: rgba($md-ref-palette-neutral-variant20, 32%);
+}
