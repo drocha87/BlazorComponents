@@ -6,13 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch:css": "sass Styles/main.scss:wwwroot/styles.css --watch",
-    "watch:ts": "npx tsc -w"
+    "watch:ts": "npx tsc -w",
+    "watch": "npx concurrently \"npm:watch:css\" \"npm:watch:ts\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^18.0.5",
+    "concurrently": "^7.3.0",
     "typescript": "^4.7.4"
   }
 }
