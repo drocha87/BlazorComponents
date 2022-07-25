@@ -1,0 +1,23 @@
+@namespace DrBlazor
+@inherits DrComponentBase
+
+<DrGrid UserAttributes="Attributes">
+    @if (LayoutService.HasTopBarApp)
+    {
+        <DrGridItem Columns="12">
+            <DrTeleportSpot Name="DrLayoutTopBarApp" />
+        </DrGridItem>
+    }
+
+    @if (LayoutService.HasDrawer)
+    {
+        <DrGridItem Columns="2" Class="@($"dr-drawer-{Drawer.ToDescriptionString()}-container")">
+            <DrTeleportSpot Name="DrLayoutDrawer" />
+        </DrGridItem>
+    }
+
+    @* main content *@
+    <DrGridItem Class="dr-layout-main-content-container" Grow>
+        @ChildContent
+    </DrGridItem>
+</DrGrid>

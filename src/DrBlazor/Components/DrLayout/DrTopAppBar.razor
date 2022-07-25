@@ -1,0 +1,34 @@
+@namespace DrBlazor
+@inherits DrComponentBase
+
+<DrTeleport To="DrLayoutTopBarApp">
+    <div @attributes="Attributes">
+        <div data-dr-toolbarapp-leading-icon>
+            @if (!DrawerOpen || LeadingIconActivated is null)
+            {
+                <DrButtonIcon Icon="@LeadingIcon" OnClick="ToggleDrawerAsync">
+                </DrButtonIcon>
+            }
+            else
+            {
+                <DrButtonIcon Icon="@LeadingIconActivated" OnClick="ToggleDrawerAsync">
+                </DrButtonIcon>
+            }
+        </div>
+
+        <div data-dr-toolbarapp-headline>
+            <DrText Typo="TypoStyle.Headline" Size="TypoSize.Small">
+                Title Small
+            </DrText>
+        </div>
+
+        <div data-dr-toolbarapp-trailing-icon>
+            <DrButtonIcon Icon="attach_file">
+            </DrButtonIcon>
+            <DrButtonIcon Icon="event">
+            </DrButtonIcon>
+            <DrButtonIcon Icon="more_vert">
+            </DrButtonIcon>
+        </div>
+    </div>
+</DrTeleport>
