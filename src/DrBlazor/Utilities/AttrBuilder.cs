@@ -101,7 +101,29 @@ public class AttrBuilder
         {
             foreach (var attr in attrs)
             {
-                _attributes.Add(attr.Key, attr.Value);
+                switch (attr.Key)
+                {
+                    case "class":
+                        {
+                            if (attr.Value is string value)
+                            {
+                                _classes.Add(value);
+                            }
+                        }
+                        break;
+
+                    case "style":
+                        {
+                            if (attr.Value is string value)
+                            {
+                                _styles.Add(value);
+                            }
+                            break;
+                        }
+                    default:
+                        _attributes.Add(attr.Key, attr.Value);
+                        break;
+                }
             }
         }
         return this;
