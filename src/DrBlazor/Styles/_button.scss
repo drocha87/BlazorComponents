@@ -55,3 +55,14 @@
     background-color: rgba($md-sys-color-primary, 12%);
   }
 }
+
+.dr-button-icon {
+  border-radius: 50%;
+  padding: 12px;
+
+  background-color: transparent;
+
+  &:hover {
+    background-color: rgba($md-sys-color-primary, 12%);
+  }
+}
