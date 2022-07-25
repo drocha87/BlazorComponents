@@ -4,21 +4,50 @@
 
 @inject DrConfig Config
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
+<DrLayout Drawer="DrawerType.Standard">
+    <DrTopAppBar @bind-DrawerOpen="_open" BarStyle="TopAppBarStyle.Small" LeadingIcon="menu"
+        LeadingIconActivated="menu_open" />
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div>
+    <DrDrawer></DrDrawer>
 
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
+    <DrMainContent>
+        @Body
+    </DrMainContent>
+
     <div style="z-index: 1000;">
         <DrTeleportSpot Name="DrModals" />
     </div>
-</div>
+</DrLayout>
+@*
+<DrGrid>
+    <DrGridItem Columns="12" Value="1">
+        <div style="background-color: red;">
+            Diego
+        </div>
+    </DrGridItem>
+
+    <DrGridItem Grow="@(!_grow)" Value="2">
+        <div style="background-color: yellow;">
+            Luis
+        </div>
+    </DrGridItem>
+
+    <DrGridItem Grow="_grow" Value="3">
+        <div style="background-color: blue;">
+            Rocha
+        </div>
+    </DrGridItem>
+</DrGrid>
+<button @onclick="ToggleGrow">
+    Toggle Grow
+</button> *@
+
+@code {
+    private bool _open = false;
+    private bool _grow = true;
+
+    void ToggleGrow()
+    {
+        _grow = !_grow;
+    }
+}
