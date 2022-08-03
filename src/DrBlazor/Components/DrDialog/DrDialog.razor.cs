@@ -33,7 +33,7 @@ public partial class DrDialog : DrComponentBase, IAsyncDisposable
     {
         if (firstRender)
         {
-            module = await JS.InvokeAsync<IJSObjectReference>("import", "./_content/DrBlazor/DrDialog/dialog.js");
+            module = await JS.InvokeAsync<IJSObjectReference>("import", "./_content/DrBlazor/Components/DrDialog/dialog.js");
 
             var reference = DotNetObjectReference.Create(this);
             await module.InvokeVoidAsync("initializeWindowResizeObserver", reference);

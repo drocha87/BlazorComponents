@@ -10,7 +10,7 @@
     "strict": true,
     "skipLibCheck": true,
 
-    "rootDir": "./Components",
+    "rootDirs": ["./Components", "./Extensions"],
     "outDir": "./wwwroot"
   }
 }

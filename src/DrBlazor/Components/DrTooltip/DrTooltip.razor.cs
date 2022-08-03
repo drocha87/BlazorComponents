@@ -3,18 +3,6 @@ using Microsoft.JSInterop;
 
 namespace DrBlazor;
 
-public struct DOMRect
-{
-    public double Bottom { get; set; }
-    public double Height { get; set; }
-    public double Left { get; set; }
-    public double Right { get; set; }
-    public double Top { get; set; }
-    public double Width { get; set; }
-    public double X { get; set; }
-    public double Y { get; set; }
-}
-
 public partial class DrTooltip : DrComponentBase, IAsyncDisposable
 {
     [Inject] IJSRuntime JS { get; set; } = null!;
@@ -31,7 +19,7 @@ public partial class DrTooltip : DrComponentBase, IAsyncDisposable
     {
         if (firstRender)
         {
-            module = await JS.InvokeAsync<IJSObjectReference>("import", "./_content/DrBlazor/DrTooltip/tooltip.js");
+            module = await JS.InvokeAsync<IJSObjectReference>("import", "./_content/DrBlazor/Components/DrTooltip/tooltip.js");
 
             var reference = DotNetObjectReference.Create(this);
             await module.InvokeVoidAsync("observeMouse", reference, _ref);

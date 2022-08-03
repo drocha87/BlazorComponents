@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 
 namespace DrBlazor;
 
@@ -11,6 +12,7 @@ public enum DrawerType
 
 public partial class DrDrawer : DrComponentBase
 {
+    [Inject] IJSRuntime JS { get; set; } = null!;
     [Inject] DrLayoutService LayoutService { get; set; } = null!;
 
     [Parameter] public bool Visible { get; set; } = false;
@@ -25,6 +27,15 @@ public partial class DrDrawer : DrComponentBase
     protected override void OnInitialized()
     {
         LayoutService.HasDrawer = true;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            DOMRect rect = await Ref.GetBoundingClientRectAsync(JS);
+            Console.WriteLine($"width: {rect.Width} height: {rect.Height}");
+        }
     }
 
     public async Task ToggleVisibility()

@@ -46,7 +46,7 @@ public partial class DrPopover : DrComponentBase, IAsyncDisposable
     {
         if (firstRender)
         {
-            module = await JS.InvokeAsync<IJSObjectReference>("import", "./_content/DrBlazor/DrPopover/popover.js");
+            module = await JS.InvokeAsync<IJSObjectReference>("import", "./_content/DrBlazor/Components/DrPopover/popover.js");
 
             var reference = DotNetObjectReference.Create(this);
             await module.InvokeVoidAsync("initializeWindowResizeObserver", reference);
