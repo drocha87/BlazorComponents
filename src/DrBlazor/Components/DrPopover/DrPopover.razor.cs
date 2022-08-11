@@ -13,8 +13,6 @@ public enum Direction
 
 public partial class DrPopover : DrComponentBase, IAsyncDisposable
 {
-    [Inject] IJSRuntime JS { get; set; } = null!;
-
     [Parameter] public RenderFragment ChildContent { get; set; } = default!;
 
     [Parameter] public bool Dismissible { get; set; } = false;
@@ -24,13 +22,18 @@ public partial class DrPopover : DrComponentBase, IAsyncDisposable
     [Parameter] public Direction Direction { get; set; } = Direction.Top;
     [Parameter] public int Margin { get; set; } = 2;
 
+    public record struct Position(double Top, double Left);
 
     private Dictionary<string, object> Attributes =>
         new AttrBuilder()
         .AddStyle("position", "absolute")
         .AddStyle("width", "fit-content")
+        .AddStyle("visibility", "hidden")
+        .AddStyle("top", "0")
+        .AddStyle("left", "0")
 
         .AddData("data-dr-popover-arrow", !DisableArrow)
+
         .Build();
 
     private ElementReference _ref;
@@ -51,30 +54,11 @@ public partial class DrPopover : DrComponentBase, IAsyncDisposable
             var reference = DotNetObjectReference.Create(this);
             await module.InvokeVoidAsync("initializeWindowResizeObserver", reference);
         }
-        await Redraw();
         await base.OnAfterRenderAsync(firstRender);
     }
 
-    public async Task Redraw()
-    {
-        if (_open)
-        {
-            try
-            {
-                await module!.InvokeVoidAsync(
-                    "updatePosition",
-                    _ref,
-                    _target,
-                    Direction,
-                    FlipToFit,
-                    Margin);
-            }
-            catch (JSException) { }
-        }
-    }
-
     [JSInvokable]
-    public async Task WindowResized() => await Redraw();
+    public async Task WindowResized() => await CalculatePositionOnScreen(Direction);
 
     public async Task CloseAsync()
     {
@@ -82,11 +66,59 @@ public partial class DrPopover : DrComponentBase, IAsyncDisposable
         await InvokeAsync(StateHasChanged);
     }
 
+    private async Task<Position> CalculatePositionOnScreen(Direction dir, bool flipping = false)
+    {
+        var targetRect = await _target.GetBoundingClientRectAsync(JS);
+        var sourceRect = await _ref.GetBoundingClientRectAsync(JS);
+        var windowSize = await GetWindowInnerSize();
+
+        switch (dir)
+        {
+            case Direction.Top:
+                {
+                    var top = targetRect.Top - sourceRect.Height - Margin;
+                    if (top < 0 && FlipToFit && !flipping)
+                    {
+                        return await CalculatePositionOnScreen(Direction.Bottom, true);
+                    }
+
+                    var left = targetRect.Left - (sourceRect.Width - targetRect.Width) / 2;
+                    if (left < 0)
+                        left = 0;
+
+                    return new Position(top, left);
+                }
+
+            case Direction.Right:
+                throw new Exception("not implemented yet");
+
+            case Direction.Left:
+                throw new Exception("not implemented yet");
+
+            case Direction.Bottom:
+                {
+                    var top = targetRect.Bottom + Margin;
+                    if (top > windowSize.Height && FlipToFit && !flipping)
+                    {
+                        return await CalculatePositionOnScreen(Direction.Top, true);
+                    }
+
+                    var left = targetRect.Left - (sourceRect.Width - targetRect.Width) / 2;
+                    if (left < 0)
+                        left = 0;
+
+                    return new Position(top, left);
+                }
+        };
+        throw new Exception("cannot place the popover");
+    }
+
     public async Task ShowAsync(ElementReference target)
     {
         _open = true;
         _target = target;
-        await InvokeAsync(StateHasChanged);
+        var position = await CalculatePositionOnScreen(Direction);
+        await module!.InvokeVoidAsync("setPosition", _ref, position);
     }
 
     public async ValueTask DisposeAsync()

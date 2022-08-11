@@ -29,7 +29,9 @@
 
 <DrTeleport To="@destination">
     <DrText Typo="@TypoStyle.Body" Size="@TypoSize.Medium">
-        This will be rendered in some container
+        <div data-value="@($"{_number}")">
+            This will be rendered in some container @_number
+        </div>
     </DrText>
 </DrTeleport>
 
@@ -38,9 +40,11 @@
 
 @code {
     string destination = "containerOne";
+    int _number = 0;
 
     public async Task ToggleDestination()
     {
+        _number++;
         if (destination.Equals("containerOne"))
         {
             destination = "containerTwo";

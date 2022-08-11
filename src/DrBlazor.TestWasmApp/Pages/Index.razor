@@ -19,8 +19,7 @@
     </DrFlexItem>
 </DrFlex>
 
-@*
-<DrPopover @bind-Open="_open"
+<DrPopover @ref="popover"
          Margin="10"
          FlipToFit
          DisableArrow
@@ -56,16 +55,28 @@
 </div>
 
 <div style="display: flex; justify-content: start; margin: 4rem 0;">
-    <button @ref="_ref" @onclick="@(() => _open = !_open)">Open Popover</button>
+    <button @ref="_ref" @onclick="TogglePopover">Open Popover</button>
 </div>
 
- *@
-
 @code {
+    DrPopover popover;
+
     public int value = 100;
 
     public ElementReference _ref;
     bool _open = false;
+
+    private async Task TogglePopover()
+    {
+        if (popover.IsVisible)
+        {
+            await popover.CloseAsync();
+        }
+        else
+        {
+            await popover.ShowAsync(_ref);
+        }
+    }
 }
 
 <style>
