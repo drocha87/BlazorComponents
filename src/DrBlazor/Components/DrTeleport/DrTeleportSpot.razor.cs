@@ -24,7 +24,6 @@ public partial class DrTeleportSpot : DrComponentBase, IDisposable
     {
         _fragments = TeleportService.GetRenderFragments(Name);
         await InvokeAsync(StateHasChanged);
-        Console.WriteLine("diego");
     }
 
     private async void OnFragmentsChanged()
