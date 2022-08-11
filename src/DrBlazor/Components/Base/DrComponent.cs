@@ -1,10 +1,14 @@
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 
 namespace DrBlazor;
+
+public record struct WindowSize(double Width, double Height);
 
 public abstract class DrComponentBase : ComponentBase, IDisposable
 {
     [Inject] public DrConfig Config { get; set; } = null!;
+    [Inject] protected IJSRuntime JS { get; set; } = null!;
 
     [Parameter] public ElementReference Ref { get; set; }
     [Parameter] public EventCallback<ElementReference> RefChanged { get; set; }
@@ -34,13 +38,26 @@ public abstract class DrComponentBase : ComponentBase, IDisposable
         await InvokeAsync(StateHasChanged);
     }
 
-    protected override void OnAfterRender(bool firstRender)
+    private IJSObjectReference? _jsModule;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            RefChanged.InvokeAsync(Ref);
+            await RefChanged.InvokeAsync(Ref);
+            _jsModule = await JS.InvokeAsync<IJSObjectReference>("import", "./_content/DrBlazor/Components/Base/base.js");
         }
-        base.OnAfterRender(firstRender);
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    protected async Task<WindowSize> GetWindowInnerSize()
+    {
+        if (_jsModule is IJSObjectReference js)
+        {
+            var result = await js.InvokeAsync<WindowSize>("getWindowInnerSize");
+            return result;
+        }
+        throw new NullReferenceException(nameof(_jsModule));
     }
 
     public void Dispose()
